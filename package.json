@@ -16,7 +16,10 @@
     "blood-stream",
     "videogames"
   ],
-  "author": "Carlos Gutierrez",
+  "contributors": []
+    "Carlos Gutierrez",
+    "Stiven Mosquera"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CarGDev/Backend/issues"
