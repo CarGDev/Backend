@@ -4,6 +4,8 @@
   "description": "This is the backend for blood-stream application",
   "main": "index.js",
   "scripts": {
+    "lint": "standard",
+    "lint-fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +18,7 @@
     "blood-stream",
     "videogames"
   ],
-  "contributors": []
+  "contributors": [
     "Carlos Gutierrez",
     "Stiven Mosquera"
   ],
@@ -24,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/CarGDev/Backend/issues"
   },
-  "homepage": "https://github.com/CarGDev/Backend#readme"
+  "homepage": "https://github.com/CarGDev/Backend#readme",
+  "devDependencies": {
+    "standard": "^14.3.4"
+  }
 }
