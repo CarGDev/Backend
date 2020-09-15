@@ -23,7 +23,7 @@ const defaults = require('defaults')
 
 const setupMessage = require('./lib/message')
 const setupPassword = require('./lib/password')
-const setupUsers = require('./lib/setupUsers')
+const setupUsers = require('./lib/users')
 const setupGamesCollection = require('./lib/gamesCollection')
 const setupContact = require('./lib/contact')
 const setupAccessRol = require('./lib/accessRol')

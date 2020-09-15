@@ -9,7 +9,7 @@ const config = require('./config')
 const prompt = inquirer.createPromptModule()
 
 async function setup (value) {
-  /* let answer = false
+  let answer = false
   process.argv.forEach((val) => {
     if (val === '--yes' || val === '-y') {
       answer = true
@@ -27,8 +27,8 @@ async function setup (value) {
     if (!answer.setup) {
       return console.log(chalk.green('Nothing happened :)'))
     }
-  } */
-  await db(config(true)).catch(handleFatalError)
+  }
+  await db(config(value)).catch(handleFatalError)
 
   console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)
   process.exit(0)
