@@ -69,6 +69,35 @@ module.exports = async function (config) {
   const GamesRatingModel = setupGamesRatingModel(config)
   const GameRatingModel = setupGameRatingModel(config)
 
+  UsersModel.hasMany(MessagesModel)
+  UsersModel.hasMany(GamesCollectionModel)
+  UsersModel.hasMany(ContactModel)
+  UsersModel.hasMany(PlatformsModel)
+
+  UsersModel.hasOne(PasswordModel)
+  UsersModel.hasOne(UserRatingModel)
+  UsersModel.hasOne(AccessRolModel)
+
+  MessagesModel.belongsTo(UsersModel)
+  PasswordModel.belongsTo(UsersModel)
+  GamesCollectionModel.belongsTo(UsersModel)
+  ContactModel.belongsTo(UsersModel)
+
+  GamesModel.hasMany(GamesCollectionModel)
+  GamesModel.hasOne(PlatformGamesModel)
+  GamesModel.hasMany(LenguagesModel)
+  GamesModel.hasMany(GenresGamesModel)
+  GamesModel.hasMany(GameRatingModel)
+
+  GenresGamesModel.belongsTo(GenresModel)
+  GenresGamesModel.belongsTo(GamesModel)
+
+  GamesRatingModel.belongsTo(UserRatingModel)
+  GamesRatingModel.belongsTo(GameRatingModel)
+
+  LanguagesGamesModel.belongsTo(LenguagesModel)
+  LanguagesGamesModel.belongsTo(GamesModel)
+
   await sequelize.authenticate()
 
   sequelize.sync()
