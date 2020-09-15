@@ -16,10 +16,6 @@
     "database",
     "postgres"
   ],
-  "contributors": [
-    "Carlos Gutierrez <ingecarlos.gutierrez@gmail.com>",
-    "Stiven Mosquera <moquera012@gmail.com>"
-  ],
   "author": "Carlos Gutierrez <ingecarlos.gutierrez@gmail.com> (https://cargdev.com/)",
   "license": "MIT",
   "bugs": {
