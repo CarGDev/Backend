@@ -1,0 +1,15 @@
+{
+  "name": "blood-stream-db",
+  "version": "1.0.0",
+  "description": "Blood-Stream-DataBase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "database",
+    "postgres"
+  ],
+  "author": "Carlos Gutierrez <ingecarlos.gutierrez@gmail.com> (https://cargdev.com/)",
+  "license": "MIT"
+}
