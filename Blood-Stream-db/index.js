@@ -78,11 +78,6 @@ module.exports = async function (config) {
   UsersModel.hasOne(UserRatingModel)
   UsersModel.hasOne(AccessRolModel)
 
-  MessagesModel.belongsTo(UsersModel)
-  PasswordModel.belongsTo(UsersModel)
-  GamesCollectionModel.belongsTo(UsersModel)
-  ContactModel.belongsTo(UsersModel)
-
   GamesModel.hasMany(GamesCollectionModel)
   GamesModel.hasOne(PlatformGamesModel)
   GamesModel.hasMany(LenguagesModel)
