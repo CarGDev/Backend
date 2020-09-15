@@ -4,12 +4,43 @@
   "description": "Blood-Stream-DataBase",
   "main": "index.js",
   "scripts": {
+    "lint": "standard",
+    "lint-fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarGDev/Backend.git"
   },
   "keywords": [
     "database",
     "postgres"
   ],
+  "contributors": [
+    "Carlos Gutierrez <ingecarlos.gutierrez@gmail.com>",
+    "Stiven Mosquera <moquera012@gmail.com>"
+  ],
   "author": "Carlos Gutierrez <ingecarlos.gutierrez@gmail.com> (https://cargdev.com/)",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CarGDev/Backend/issues"
+  },
+  "homepage": "https://github.com/CarGDev/Backend#readme",
+  "devDependencies": {
+    "ava": "^3.12.1",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^9.0.3",
+    "sqlite3": "^5.0.0",
+    "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "debug": "^4.1.1",
+    "defaults": "^1.0.3",
+    "inquirer": "^7.3.3",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  }
 }
