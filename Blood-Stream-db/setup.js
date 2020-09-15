@@ -1,7 +1,6 @@
 'use strict'
 
 const db = require('./')
-// const debug = require('debug')('platziverse:db:setup')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const config = require('./config')

@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "standard",
     "lint-fix": "standard --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "DEBUG=Blood-Stream:* && node setup.js",
+    "test": "DEBUG=Blood-Stream:* &&  nyc --reporte=lcov ava tests/* --verbose"
   },
   "repository": {
     "type": "git",
