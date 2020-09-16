@@ -112,31 +112,31 @@ module.exports = async function (config) {
     await sequelize.sync({ force: true })
   }
 
-  /* const message = setupMessage ()
-  const password = setupPassword ()
-  const users = setupUsers ()
-  const gamesCollection = setupGamesCollection ()
-  const contact = setupContact () */
-  const accessRol = setupAccessRol (AccessRolModel)
-  /* const platform = setupPlatform ()
+  const message = setupMessage (MessagesModel)
+  const password = setupPassword (PasswordModel)
+  const users = setupUsers (UsersModel)
+  const gamesCollection = setupGamesCollection (GamesCollectionModel)
+  const contact = setupContact (ContactModel)
+  const accessRol = setupAccessRol (AccessRolModel, UsersModel)
+  const platform = setupPlatform (PlatformsModel)
   const platformGames = setupPlatformGames ()
-  const lenguages = setupLenguages ()
+  const lenguages = setupLenguages (LenguagesModel)
   const lenguagesGames = setupLenguagesGames ()
-  const genres = setupGenres ()
+  const genres = setupGenres (GenresModel)
   const genresGames = setupGenresGames ()
-  const games = setupGames ()
+  const games = setupGames (GamesModel)
   const userRating = setupUserRating ()
-  const gamesRating = setupGamesRating ()
-  const gameRating = setupGameRating () */
+  const gamesRating = setupGamesRating (GamesRatingModel)
+  const gameRating = setupGameRating ()
 
   return {
-    /* message,
+    message,
     password,
     users,
     gamesCollection,
-    contact, */
+    contact,
     accessRol,
-    /* platform,
+    platform,
     platformGames,
     lenguages,
     lenguagesGames,
@@ -145,6 +145,6 @@ module.exports = async function (config) {
     games,
     userRating,
     gamesRating,
-    gameRating */
+    gameRating
   }
 }
