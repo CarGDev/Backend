@@ -7,7 +7,6 @@ module.exports = function setupAccessRol (AccessRolModel, usersModel) {
         uuid: accessRol.uuid
       }
     }
-    
 
     const usersId = await usersModel.findOne({
       where: { uuid }
