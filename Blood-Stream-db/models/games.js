@@ -7,6 +7,10 @@ module.exports = function setupGamesModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('games', {
+    uuid: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     Url_Game: {
       type: Sequelize.STRING,
       allowNull: false

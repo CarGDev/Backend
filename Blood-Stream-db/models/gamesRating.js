@@ -7,6 +7,10 @@ module.exports = function setupGamesRatingModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('gamesRating', {
+    uuid: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     Review: {
       type: Sequelize.TEXT,
       allowNull: true
