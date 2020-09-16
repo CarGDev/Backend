@@ -104,9 +104,6 @@ module.exports = async function (config) {
   GameRatingModel.belongsTo(GamesModel)
   GameRatingModel.belongsTo(GamesRatingModel)
 
-
-
-
   await sequelize.authenticate()
 
   sequelize.sync()
@@ -115,13 +112,13 @@ module.exports = async function (config) {
     await sequelize.sync({ force: true })
   }
 
-  const message = setupMessage ()
+  /* const message = setupMessage ()
   const password = setupPassword ()
   const users = setupUsers ()
   const gamesCollection = setupGamesCollection ()
-  const contact = setupContact ()
-  const accessRol = setupAccessRol ()
-  const platform = setupPlatform ()
+  const contact = setupContact () */
+  const accessRol = setupAccessRol (AccessRolModel)
+  /* const platform = setupPlatform ()
   const platformGames = setupPlatformGames ()
   const lenguages = setupLenguages ()
   const lenguagesGames = setupLenguagesGames ()
@@ -130,16 +127,16 @@ module.exports = async function (config) {
   const games = setupGames ()
   const userRating = setupUserRating ()
   const gamesRating = setupGamesRating ()
-  const gameRating = setupGameRating ()
+  const gameRating = setupGameRating () */
 
   return {
-    message,
+    /* message,
     password,
     users,
     gamesCollection,
-    contact,
+    contact, */
     accessRol,
-    platform,
+    /* platform,
     platformGames,
     lenguages,
     lenguagesGames,
@@ -148,6 +145,6 @@ module.exports = async function (config) {
     games,
     userRating,
     gamesRating,
-    gameRating
+    gameRating */
   }
 }

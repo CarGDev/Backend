@@ -7,6 +7,10 @@ module.exports = function setupUsersModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('users', {
+    uuid: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     Nickname: {
       type: Sequelize.STRING,
       allowNull: false
