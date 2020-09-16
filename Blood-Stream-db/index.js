@@ -78,20 +78,34 @@ module.exports = async function (config) {
   UsersModel.hasOne(UserRatingModel)
   UsersModel.hasOne(AccessRolModel)
 
+  UsersModel.belongsTo(PlatformsModel)
+  UsersModel.belongsTo(ContactModel)
+
+  GamesCollectionModel.belongsTo(UsersModel)
+  GamesCollectionModel.belongsTo(GamesModel)
+  AccessRolModel.belongsTo(UsersModel)
+  PasswordModel.belongsTo(UsersModel)
+  MessagesModel.belongsTo(UsersModel)
+  userRating.belongsTo(UsersModel)
+  userRating.belongsTo(GamesRatingModel)
+
   GamesModel.hasMany(GamesCollectionModel)
-  GamesModel.hasOne(PlatformGamesModel)
-  GamesModel.hasMany(LenguagesModel)
-  GamesModel.hasMany(GenresGamesModel)
-  GamesModel.hasMany(GameRatingModel)
 
-  GenresGamesModel.belongsTo(GenresModel)
-  GenresGamesModel.belongsTo(GamesModel)
 
-  GamesRatingModel.belongsTo(UserRatingModel)
-  GamesRatingModel.belongsTo(GameRatingModel)
-
-  LanguagesGamesModel.belongsTo(LenguagesModel)
   LanguagesGamesModel.belongsTo(GamesModel)
+  LanguagesGamesModel.belongsTo(LenguagesModel)
+
+  GenresGamesModel.belongsTo(GamesModel)
+  GenresGamesModel.belongsTo(GenresModel)
+
+  PlatformGamesModel.belongsTo(GamesModel)
+  PlatformGamesModel.belongsTo(PlatformsModel)
+
+  GameRatingModel.belongsTo(GamesModel)
+  GameRatingModel.belongsTo(GamesRatingModel)
+
+
+
 
   await sequelize.authenticate()
 
