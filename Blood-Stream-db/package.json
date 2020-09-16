@@ -2,7 +2,7 @@
   "name": "blood-stream-db",
   "version": "1.0.0",
   "description": "Blood-Stream-DataBase",
-  "main": "index.js",
+  "main": "setup.js",
   "scripts": {
     "lint": "standard",
     "lint-fix": "standard --fix",
