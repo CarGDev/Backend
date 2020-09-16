@@ -29,6 +29,6 @@ module.exports = function config (configExtra) {
 
   return config
 }
-
+```
 
 ```
