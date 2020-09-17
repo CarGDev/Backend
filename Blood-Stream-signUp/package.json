@@ -1,0 +1,39 @@
+{
+  "name": "blood-stream-signup",
+  "version": "1.0.0",
+  "description": "Sign Up with DB and social network using passport",
+  "main": "index.js",
+  "scripts": {
+    "dev": "set DEBUG=app:* && nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MosqueraSt3/Backend.git"
+  },
+  "keywords": [
+    "signup"
+  ],
+  "author": "Steven Mosquera <esmosquera66@misena.edu.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MosqueraSt3/Backend/issues"
+  },
+  "homepage": "https://github.com/MosqueraSt3/Backend#readme",
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}
