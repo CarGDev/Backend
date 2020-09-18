@@ -7,11 +7,7 @@ module.exports = function setupPasswordModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('password', {
-    Pass_Id: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    User_Id: {
+    uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },

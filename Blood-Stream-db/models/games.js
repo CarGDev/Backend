@@ -7,7 +7,7 @@ module.exports = function setupGamesModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('games', {
-    Game_Id: {
+    uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -47,19 +47,11 @@ module.exports = function setupGamesModel (config) {
       type: Sequelize.STRING,
       allowNull: true
     },
-    Languages_Id: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
     Size: {
       type: Sequelize.FLOAT,
       allowNull: true
     },
     Primary_Genre: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    Genre_Id: {
       type: Sequelize.STRING,
       allowNull: true
     },

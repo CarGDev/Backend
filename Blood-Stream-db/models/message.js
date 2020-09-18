@@ -7,11 +7,7 @@ module.exports = function setupGenresModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('genres', {
-    Message_Id: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    User_Id: {
+    uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },
