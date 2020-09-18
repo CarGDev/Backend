@@ -4,7 +4,7 @@
   "description": "Sign Up with DB and social network using passport",
   "main": "index.js",
   "scripts": {
-    "dev": "set DEBUG=app:* && nodemon index"
+    "dev": "set DEBUG=app:* && nodemon api/index"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/MosqueraSt3/Backend#readme",
   "devDependencies": {
+    "chalk": "^4.1.0",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -35,5 +36,16 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "nanoid": "^3.1.12",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0"
   }
 }
