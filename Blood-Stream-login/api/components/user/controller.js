@@ -1,7 +1,9 @@
+'use strict'
+
 const { nanoid } = require('nanoid')
 const auth = require('../auth')
 
-const TABLA = 'user'
+const TABLA = 'users'
 const ID = 'id'
 module.exports = function (injectedStore, injectedCache) {
   let cache = injectedCache

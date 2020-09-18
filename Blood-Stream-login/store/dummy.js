@@ -1,8 +1,11 @@
+'use strict'
+
+const data = require('./mock')
 const db = {
-  'user': [{
-    id: '1', 
-    name: 'Carlos'
-  }],
+  users: data.users,
+  contact: data.contact,
+  plataform: data.platform,
+  accessrol: data.accessrol
 }
 
 async function list (tabla) {

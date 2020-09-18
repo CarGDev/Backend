@@ -1,13 +1,7 @@
-// const store = require('../../../store/mysql')
-const config = require('../../../config')
-let store, cache
-if (config.remoteDB === false) {
-  store = require('../../../store/remote-mysql')
-  cache = require('../../../store/remote-cache')
-} else {
-  store = require('../../../store/mysql')
-  cache = require('../../../store/redis')
-}
-const ctrl = require('./controller')
+'use strict'
 
-module.exports = ctrl(store, cache)
+// const store = require('../../../store/mysql')
+const ctrl = require('./controller')
+const store = require('../../../store/mysql')
+
+module.exports = ctrl(store)
