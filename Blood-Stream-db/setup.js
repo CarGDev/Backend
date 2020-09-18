@@ -1,9 +1,9 @@
 'use strict'
 
-const db = require('./')
+const db = require('./lib/db')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const config = require('./config')
+const config = require('configuration')
 
 const prompt = inquirer.createPromptModule()
 

@@ -7,7 +7,7 @@ module.exports = function setupLenguagesModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('lenguages', {
-    Id: {
+    uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },

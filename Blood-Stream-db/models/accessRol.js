@@ -7,11 +7,7 @@ module.exports = function setupAccessRolModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('accessRol', {
-    Access_Id: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    User_Id: {
+    uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },

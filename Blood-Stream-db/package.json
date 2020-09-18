@@ -2,7 +2,7 @@
   "name": "blood-stream-db",
   "version": "1.0.0",
   "description": "Blood-Stream-DataBase",
-  "main": "index.js",
+  "main": "setup.js",
   "scripts": {
     "lint": "standard",
     "lint-fix": "standard --fix",
@@ -29,7 +29,8 @@
     "proxyquire": "^2.1.3",
     "sinon": "^9.0.3",
     "sqlite3": "^5.0.0",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "configuration": "file:../config"
   },
   "dependencies": {
     "chalk": "^4.1.0",

@@ -7,7 +7,7 @@ module.exports = function setupUsersModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('users', {
-    User_Id: {
+    uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },
@@ -23,24 +23,12 @@ module.exports = function setupUsersModel (config) {
       type: Sequelize.STRING,
       allowNull: false
     },
-    Contact_Id: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
     Birthday: {
       type: Sequelize.DATE,
       allowNull: false
     },
     Date_Created: {
       type: Sequelize.DATE,
-      allowNull: false
-    },
-    Platform_Id: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    Rol_Id: {
-      type: Sequelize.STRING,
       allowNull: false
     },
     Status: {
