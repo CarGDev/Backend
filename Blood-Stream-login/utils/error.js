@@ -1,3 +1,5 @@
+'use strict'
+
 function err (message, code) {
   const e = new Error(message)
 

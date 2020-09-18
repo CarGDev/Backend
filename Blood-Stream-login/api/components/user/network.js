@@ -1,3 +1,5 @@
+'use strict'
+
 const express = require('express')
 
 const secure = require('./secure')
@@ -7,7 +9,7 @@ const router = express.Router()
 
 // Routes
 router.get('/', list)
-router.get('/:id', get)
+router.get('/:UserId', get)
 router.get('/:id/followers', secure('follow'), followers)
 router.post('/', upsert)
 router.post('/follow/:id', secure('follow'), follow)

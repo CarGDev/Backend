@@ -1,6 +1,8 @@
+'use strict'
+
 const bcrypt = require('bcrypt')
 const auth = require('../../../auth/index')
-const TABLA = 'auth'
+const TABLA = 'password'
 
 module.exports = function (injectedStore) {
   let store = injectedStore
@@ -17,7 +19,7 @@ module.exports = function (injectedStore) {
           // token
           return auth.sign(JSON.parse(JSON.stringify(data)))
         } else {
-          throw new Error('informacion invalida')
+          throw new Error('Invalid information')
         }
       })
   }
