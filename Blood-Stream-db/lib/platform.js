@@ -39,5 +39,4 @@ module.exports = function setupPlatform (platformModel) {
     findByUuid,
     findAll
   }
-
 }

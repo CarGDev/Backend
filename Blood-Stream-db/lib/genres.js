@@ -39,5 +39,4 @@ module.exports = function setupGenres (genresModel) {
     findByUuid,
     findAll
   }
-
 }

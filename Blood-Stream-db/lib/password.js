@@ -39,5 +39,4 @@ module.exports = function setupPassword (passwordModel) {
     findByUuid,
     findAll
   }
-
 }

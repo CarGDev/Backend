@@ -91,7 +91,6 @@ module.exports = async function (config) {
 
   GamesModel.hasMany(GamesCollectionModel)
 
-
   LanguagesGamesModel.belongsTo(GamesModel)
   LanguagesGamesModel.belongsTo(LenguagesModel)
 
@@ -112,22 +111,22 @@ module.exports = async function (config) {
     await sequelize.sync({ force: true })
   }
 
-  const message = setupMessage (MessagesModel)
-  const password = setupPassword (PasswordModel)
-  const users = setupUsers (UsersModel)
-  const gamesCollection = setupGamesCollection (GamesCollectionModel)
-  const contact = setupContact (ContactModel)
-  const accessRol = setupAccessRol (AccessRolModel, UsersModel)
-  const platform = setupPlatform (PlatformsModel)
-  const platformGames = setupPlatformGames ()
-  const lenguages = setupLenguages (LenguagesModel)
-  const lenguagesGames = setupLenguagesGames ()
-  const genres = setupGenres (GenresModel)
-  const genresGames = setupGenresGames ()
-  const games = setupGames (GamesModel)
-  const userRating = setupUserRating ()
-  const gamesRating = setupGamesRating (GamesRatingModel)
-  const gameRating = setupGameRating ()
+  const message = setupMessage(MessagesModel)
+  const password = setupPassword(PasswordModel)
+  const users = setupUsers(UsersModel)
+  const gamesCollection = setupGamesCollection(GamesCollectionModel)
+  const contact = setupContact(ContactModel)
+  const accessRol = setupAccessRol(AccessRolModel, UsersModel)
+  const platform = setupPlatform(PlatformsModel)
+  const platformGames = setupPlatformGames()
+  const lenguages = setupLenguages(LenguagesModel)
+  const lenguagesGames = setupLenguagesGames()
+  const genres = setupGenres(GenresModel)
+  const genresGames = setupGenresGames()
+  const games = setupGames(GamesModel)
+  const userRating = setupUserRating()
+  const gamesRating = setupGamesRating(GamesRatingModel)
+  const gameRating = setupGameRating()
 
   return {
     message,

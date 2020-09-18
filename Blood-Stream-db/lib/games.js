@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 'use strict'
 
@@ -41,5 +41,4 @@ module.exports = function setupGames (gamesModel) {
     findByUuid,
     findAll
   }
-
 }
