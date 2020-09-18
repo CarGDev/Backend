@@ -7,6 +7,6 @@ module.exports = function setupGameRatingModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('gameRating', {
-    
+
   })
 }

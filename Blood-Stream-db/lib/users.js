@@ -39,5 +39,4 @@ module.exports = function setupUsers (usersModel) {
     findByUuid,
     findAll
   }
-
 }

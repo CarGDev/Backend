@@ -22,7 +22,7 @@ module.exports = function setupAccessRol (AccessRolModel, usersModel) {
       Object.assign(users, { usersId: users.id })
       const result = await AccessRolModel.create(accessRol)
       return result.toJSON()
-    } 
+    }
     const result = await AccessRolModel.create(accessRol)
     return result.toJSON()
   }
@@ -49,5 +49,4 @@ module.exports = function setupAccessRol (AccessRolModel, usersModel) {
     findByUuid,
     findAll
   }
-
 }

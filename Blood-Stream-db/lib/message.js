@@ -39,5 +39,4 @@ module.exports = function setupMessages (messagesModel) {
     findByUuid,
     findAll
   }
-
 }

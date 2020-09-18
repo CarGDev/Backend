@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
 module.exports = function setupGameRating (gameRatingModel, gamesRatingModel, gamesModel) {
-  async function create(uuidGamesRating, uuidGames, gameRating) {
+  async function create (uuidGamesRating, uuidGames, gameRating) {
     const gamesRating = await gamesRatingModel.findOne({
       where: { uuidGamesRating }
     })

@@ -39,5 +39,4 @@ module.exports = function setupGamesRating (gamesRatingModel) {
     findByUuid,
     findAll
   }
-
 }
