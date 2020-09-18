@@ -9,10 +9,9 @@ const router = express.Router()
 
 // Routes
 router.get('/', list)
-router.get('/:UserId', get)
-router.get('/:id/followers', secure('follow'), followers)
+router.get('/:id', get)
+router.get('/:id/login', secure('login'), followers)
 router.post('/', upsert)
-router.post('/follow/:id', secure('follow'), follow)
 router.put('/', secure('update'), upsert)
 
 // Internal Functions

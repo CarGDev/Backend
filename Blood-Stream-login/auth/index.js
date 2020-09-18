@@ -19,7 +19,7 @@ const check = {
     // comprobation if is the user or not
     console.log(decoded)
     if (decoded.id !== owner) {
-      throw error('No tienes permisos de autenticacion', 401)
+      throw error('Not authorized', 401)
     }
   },
   logged: function (req, owner) {
@@ -29,10 +29,10 @@ const check = {
 
 function getToken (authorization) {
   if (!authorization) {
-    throw error('No viene token')
+    throw error('Missing token')
   }
   if (authorization.indexOf('Bearer ') === -1) {
-    throw error('Formato invalido')
+    throw error('Invalid Format')
   }
   const token = authorization.replace('Bearer ', '')
 

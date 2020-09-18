@@ -47,6 +47,7 @@ function list (table) {
 
 function get (table, id, idName) {
   return new Promise((resolve, reject) => {
+    console.log(`SELECT * FROM ${table} WHERE ${idName} = '${id}'`)
     connection.query(`SELECT * FROM ${table} WHERE ${idName} = '${id}'`, (err, data) => {
       if (err) return reject(err)
       resolve(data)

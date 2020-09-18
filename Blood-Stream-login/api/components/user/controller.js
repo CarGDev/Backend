@@ -4,7 +4,7 @@ const { nanoid } = require('nanoid')
 const auth = require('../auth')
 
 const TABLA = 'users'
-const ID = 'id'
+const ID = 'UserId'
 module.exports = function (injectedStore, injectedCache) {
   let cache = injectedCache
   let store = injectedStore
