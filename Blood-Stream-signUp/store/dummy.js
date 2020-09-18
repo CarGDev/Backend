@@ -4,8 +4,8 @@ const db = {
     ],
 };
 
-async function list(tabla) {
-    return db[tabla] || [];
+async function list(table) {
+    return db[table] || [];
 }
 
 async function get(table, id) {
@@ -20,6 +20,7 @@ async function upsert(table, data) {
 
     db[table].push(data);
 
+    console.log(db);
 }
 module.exports = {
     get,
