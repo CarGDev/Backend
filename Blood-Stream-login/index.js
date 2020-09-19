@@ -4,15 +4,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const swaggerUi = require('swagger-ui-express')
-const config = require('../config')
-const user = require('./components/user/network')
-const errors = require('../network/errors')
+const config = require('./config')
+const user = require('./api/components/user/network')
+const errors = require('./network/errors')
 const app = express()
 
 app.use(bodyParser.json())
 
-const swaggerDoc = require('./swagger.json')
-const auth = require('./components/auth/network')
+const swaggerDoc = require('./api/swagger.json')
+const auth = require('./api/components/auth/network')
 
 // ROUTER
 app.use('/api/user', user)

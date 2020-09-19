@@ -2,12 +2,12 @@
   "name": "blood-stream-login",
   "version": "1.0.0",
   "description": "Login creation for bloodstream",
-  "main": "./api/index-api.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "lint": "standard",
     "lint-fix": "standard --fix",
-    "start-dev": "nodemon ./api/index-api.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-dev": "nodemon ./api/index-api.js"
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,8 @@
   "devDependencies": {
     "nodemon": "^2.0.4",
     "standard": "^14.3.4"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
