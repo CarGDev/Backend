@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "standard",
     "lint-fix": "standard --fix",
+    "start": "node ./api/index-api.js",
     "start-dev": "nodemon ./api/index-api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
