@@ -15,7 +15,7 @@ module.exports = {
     database: process.env.MYSQL_DB || 'bloodstream'
   },
   mysqlService: {
-    port: 8088,
+    port: process.env.MYSQL_SRV_PORT || 3306,
     host: process.env.MYSQL_SRV_HOST || ''
   },
   cacheService: {
