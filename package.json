@@ -30,5 +30,8 @@
   "homepage": "https://github.com/CarGDev/Backend#readme",
   "devDependencies": {
     "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
