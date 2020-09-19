@@ -32,6 +32,7 @@
     "standard": "^14.3.4"
   },
   "dependencies": {
-    "login-app": "file:./Blood-Stream-login"
+    "login-app": "file:./Blood-Stream-login",
+    "sign-up": "file:./Blood-Stream-signUp"
   }
 }
