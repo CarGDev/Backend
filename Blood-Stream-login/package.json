@@ -2,9 +2,9 @@
   "name": "blood-stream-login",
   "version": "1.0.0",
   "description": "Login creation for bloodstream",
-  "main": "./api/index-api.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./api/index-api.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
