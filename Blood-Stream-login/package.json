@@ -4,10 +4,7 @@
   "description": "Login creation for bloodstream",
   "main": "./api/index-api.js",
   "scripts": {
-    "start": "node ./api/index-api.js",
-    "lint": "standard",
-    "lint-fix": "standard --fix",
-    "start-dev": "nodemon ./api/index-api.js"
+    "start": "node ./api/index-api.js"
   },
   "repository": {
     "type": "git",
