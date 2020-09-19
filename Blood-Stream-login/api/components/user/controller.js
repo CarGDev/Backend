@@ -9,10 +9,12 @@ module.exports = function (injectedStore, injectedCache) {
   let cache = injectedCache
   let store = injectedStore
   if (!store) {
+    console.log('Dummy store flag')
     store = require('../../../store/dummy')
   }
-
+  
   if (!cache) {
+    console.log('Cache Dummy store flag')
     cache = require('../../../store/dummy')
   }
 

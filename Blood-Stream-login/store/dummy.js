@@ -14,7 +14,7 @@ async function list (tabla) {
 
 async function get (tabla, id) {
   const col = await list(tabla)
-  return col.filter(item => item.id === id)[0] || null
+  return col.filter(item => item.UserId === id)[0] || null
 }
 
 async function upsert (tabla, data) {
