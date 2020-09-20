@@ -3,11 +3,11 @@
 const db = require('./lib/db')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const config = require('configuration')
+const config = require('./config')
 
 const prompt = inquirer.createPromptModule()
 
-async function setup (value) {
+async function setup () {
   let answer = false
   process.argv.forEach((val) => {
     if (val === '--yes' || val === '-y') {
@@ -27,7 +27,7 @@ async function setup (value) {
       return console.log(chalk.green('Nothing happened :)'))
     }
   }
-  await db(config(value)).catch(handleFatalError)
+  await db(config(true)).catch(handleFatalError)
 
   console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)
   process.exit(0)
