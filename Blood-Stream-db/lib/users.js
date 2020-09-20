@@ -10,7 +10,7 @@ module.exports = function setupUsers (usersModel) {
 
     const existingusers = await usersModel.findOne(cond)
     if (existingusers) {
-      const updated = await usersModel.update(agent, cond)
+      const updated = await usersModel.update(cond)
       return updated ? usersModel.findOne(cond) : existingusers
     }
     const result = await usersModel.create(users)

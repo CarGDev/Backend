@@ -12,7 +12,7 @@ module.exports = function setupLenguages (lenguagesModel) {
 
     const existinglenguages = await lenguagesModel.findOne(cond)
     if (existinglenguages) {
-      const updated = await lenguagesModel.update(agent, cond)
+      const updated = await lenguagesModel.update(cond)
       return updated ? lenguagesModel.findOne(cond) : existinglenguages
     }
     const result = await lenguagesModel.create(lenguages)

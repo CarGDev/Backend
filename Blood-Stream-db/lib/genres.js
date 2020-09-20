@@ -10,7 +10,7 @@ module.exports = function setupGenres (genresModel) {
 
     const existinggenres = await genresModel.findOne(cond)
     if (existinggenres) {
-      const updated = await genresModel.update(agent, cond)
+      const updated = await genresModel.update(cond)
       return updated ? genresModel.findOne(cond) : existinggenres
     }
     const result = await genresModel.create(genres)

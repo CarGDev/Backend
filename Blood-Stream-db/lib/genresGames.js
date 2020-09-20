@@ -3,14 +3,14 @@
 
 module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesModel) {
   async function create (uuidGenres, uuidGames, genres) {
-    const genres = await genreModel.findOne({
+    const genresInfo = await genreModel.findOne({
       where: { uuidGenres }
     })
     const games = await gamesModel.findOne({
       where: { uuidGames }
     })
 
-    if (genres && games) {
+    if (genresInfo && games) {
       Object.assign(genres, { genresId: gamesRating.id })
       Object.assign(genres, { gamesId: games.id })
       const result = await genreGamesModel.create(genres)
