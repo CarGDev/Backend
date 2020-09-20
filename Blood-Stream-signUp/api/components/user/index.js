@@ -1,4 +1,4 @@
-const store = require('../../../store/dummy');
-const ctrl = require('./user-controller');
+const store = require('../../../store/dummy')
+const ctrl = require('./user-controller')
 
-module.exports = ctrl(store);
+module.exports = ctrl(store)

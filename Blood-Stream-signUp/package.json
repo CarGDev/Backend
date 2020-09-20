@@ -2,7 +2,7 @@
   "name": "blood-stream-signup",
   "version": "1.0.0",
   "description": "Sign Up with DB and social network using passport",
-  "main": "index.js",
+  "main": "./api/index.js",
   "scripts": {
     "dev": "set DEBUG=app:* && nodemon api/index"
   },

@@ -1,9 +1,10 @@
 'use strict'
 
-const db = require('./lib/db')
+const db = require('./index')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const config = require('configuration')
+const utils = require('./utils/index')
 
 const prompt = inquirer.createPromptModule()
 
@@ -27,16 +28,10 @@ async function setup (value) {
       return console.log(chalk.green('Nothing happened :)'))
     }
   }
-  await db(config(value)).catch(handleFatalError)
-
-  console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)
-  process.exit(0)
-}
-
-function handleFatalError (err) {
-  console.error(`${chalk.bgRed.white('[fatal error]:')} ${err.message}`)
-  console.error(`${chalk.bgRed.white('[Error]:')} ${err.stack}`)
-  process.exit(1)
+  await db(config(true)).catch(utils.handleFatalError)
+  
+  console.log(`${chalk.bgGreen.black('[Connected]:')} Success!`)
+  // process.exit(0)
 }
 
 setup()

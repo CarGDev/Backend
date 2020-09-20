@@ -78,16 +78,16 @@ module.exports = async function (config) {
   UsersModel.hasOne(UserRatingModel)
   UsersModel.hasOne(AccessRolModel)
 
-  UsersModel.belongsTo(PlatformsModel)
-  UsersModel.belongsTo(ContactModel)
+  // UsersModel.belongsTo(PlatformsModel)
+  // UsersModel.belongsTo(ContactModel)
 
   GamesCollectionModel.belongsTo(UsersModel)
   GamesCollectionModel.belongsTo(GamesModel)
   AccessRolModel.belongsTo(UsersModel)
   PasswordModel.belongsTo(UsersModel)
   MessagesModel.belongsTo(UsersModel)
-  userRating.belongsTo(UsersModel)
-  userRating.belongsTo(GamesRatingModel)
+  UserRatingModel.belongsTo(UsersModel)
+  UserRatingModel.belongsTo(GamesRatingModel)
 
   GamesModel.hasMany(GamesCollectionModel)
 
@@ -120,13 +120,13 @@ module.exports = async function (config) {
   const platform = setupPlatform(PlatformsModel)
   const platformGames = setupPlatformGames()
   const lenguages = setupLenguages(LenguagesModel)
-  const lenguagesGames = setupLenguagesGames()
+  const lenguagesGames = setupLenguagesGames(GamesModel, PlatformsModel, PlatformGamesModel)
   const genres = setupGenres(GenresModel)
-  const genresGames = setupGenresGames()
+  const genresGames = setupGenresGames(GenresGamesModel, GenresGamesModel, GamesModel)
   const games = setupGames(GamesModel)
-  const userRating = setupUserRating()
+  const userRating = setupUserRating(UserRatingModel, GamesRatingModel, UsersModel)
   const gamesRating = setupGamesRating(GamesRatingModel)
-  const gameRating = setupGameRating()
+  const gameRating = setupGameRating(GameRatingModel, GamesRatingModel, GamesModel)
 
   return {
     message,

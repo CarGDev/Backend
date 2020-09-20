@@ -10,7 +10,7 @@ module.exports = function setupGamesCollection (gamesCollectionModel) {
 
     const existinggamesCollection = await gamesCollectionModel.findOne(cond)
     if (existinggamesCollection) {
-      const updated = await gamesCollectionModel.update(agent, cond)
+      const updated = await gamesCollectionModel.update(cond)
       return updated ? gamesCollectionModel.findOne(cond) : existinggamesCollection
     }
     const result = await gamesCollectionModel.create(gamesCollection)

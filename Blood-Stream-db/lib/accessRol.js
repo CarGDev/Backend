@@ -14,7 +14,7 @@ module.exports = function setupAccessRol (AccessRolModel, usersModel) {
 
     const existingAccessRol = await AccessRolModel.findOne(cond)
     if (existingAccessRol) {
-      const updated = await AccessRolModel.update(agent, cond)
+      const updated = await AccessRolModel.update(cond)
       return updated ? AccessRolModel.findOne(cond) : existingAccessRol
     }
 
