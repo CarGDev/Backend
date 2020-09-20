@@ -1,6 +1,6 @@
 'use strict'
 
-const db = require('./lib/db')
+const db = require('./')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const config = require('./config')
