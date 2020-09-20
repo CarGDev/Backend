@@ -86,8 +86,8 @@ module.exports = async function (config) {
   AccessRolModel.belongsTo(UsersModel)
   PasswordModel.belongsTo(UsersModel)
   MessagesModel.belongsTo(UsersModel)
-  userRating.belongsTo(UsersModel)
-  userRating.belongsTo(GamesRatingModel)
+  UserRatingModel.belongsTo(UsersModel)
+  UserRatingModel.belongsTo(GamesRatingModel)
 
   GamesModel.hasMany(GamesCollectionModel)
 
@@ -122,7 +122,7 @@ module.exports = async function (config) {
   const lenguages = setupLenguages(LenguagesModel)
   const lenguagesGames = setupLenguagesGames(GamesModel, PlatformsModel, PlatformGamesModel)
   const genres = setupGenres(GenresModel)
-  const genresGames = setupGenresGames(GenresGamesModel, genresGames, GamesModel)
+  const genresGames = setupGenresGames(GenresGamesModel, GenresGamesModel, GamesModel)
   const games = setupGames(GamesModel)
   const userRating = setupUserRating(UserRatingModel, GamesRatingModel, UsersModel)
   const gamesRating = setupGamesRating(GamesRatingModel)
