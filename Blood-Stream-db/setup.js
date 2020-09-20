@@ -31,7 +31,7 @@ async function setup (value) {
   await db(config(value)).catch(utils.handleFatalError)
   
   console.log(`${chalk.bgGreen.black('[Connected]:')} Success!`)
-  process.exit(0)
+  // process.exit(0)
 }
 
 setup()
