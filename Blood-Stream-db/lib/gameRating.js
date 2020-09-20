@@ -16,4 +16,17 @@ module.exports = function setupGameRating (gameRatingModel, gamesRatingModel, ga
       return result.toJSON()
     }
   }
+  function findById (id) {
+    return gameRatingModel.findById(id)
+  }
+
+  function findAll () {
+    return gameRatingModel.findAll()
+  }
+
+  return {
+    create,
+    findById,
+    findAll
+  }
 }
