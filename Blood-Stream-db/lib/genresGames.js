@@ -11,7 +11,7 @@ module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesMo
     })
 
     if (genresInfo && games) {
-      Object.assign(genres, { genresId: gamesRating.id })
+      Object.assign(genres, { genresId: genres.id })
       Object.assign(genres, { gamesId: games.id })
       const result = await genreGamesModel.create(genres)
       return result.toJSON()
