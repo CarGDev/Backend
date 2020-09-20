@@ -30,5 +30,3 @@ module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lengu
     findAll
   }
 }
-
-
