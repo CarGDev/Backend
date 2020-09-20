@@ -10,7 +10,7 @@ module.exports = function setupGamesRating (gamesRatingModel) {
 
     const existinggamesRating = await gamesRatingModel.findOne(cond)
     if (existinggamesRating) {
-      const updated = await gamesRatingModel.update(agent, cond)
+      const updated = await gamesRatingModel.update(cond)
       return updated ? gamesRatingModel.findOne(cond) : existinggamesRating
     }
     const result = await gamesRatingModel.create(gamesRating)

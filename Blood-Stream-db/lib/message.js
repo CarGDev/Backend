@@ -10,7 +10,7 @@ module.exports = function setupMessages (messagesModel) {
 
     const existingmessages = await messagesModel.findOne(cond)
     if (existingmessages) {
-      const updated = await messagesModel.update(agent, cond)
+      const updated = await messagesModel.update(cond)
       return updated ? messagesModel.findOne(cond) : existingmessages
     }
     const result = await messagesModel.create(messages)
