@@ -38,7 +38,7 @@ module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lengu
   }
 
   async function deleteById (id) {
-    return await usersModel.destroy({
+    return await lenguagesGamesModel.destroy({
       where: {
         id
       }

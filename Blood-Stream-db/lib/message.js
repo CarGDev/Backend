@@ -18,7 +18,11 @@ module.exports = function setupMessages (messagesModel) {
   }
 
   function findById (id) {
-    return messagesModel.findById(id)
+    return messagesModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
   function findByUuid (uuid) {
@@ -33,10 +37,19 @@ module.exports = function setupMessages (messagesModel) {
     return messagesModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await messagesModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }
