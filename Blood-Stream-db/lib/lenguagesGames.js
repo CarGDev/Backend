@@ -16,7 +16,7 @@ module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lengu
       return result.toJSON()
     }
   }
-  
+
   function findById (id) {
     return lenguagesGamesModel.findOne({
       where: {
@@ -24,7 +24,7 @@ module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lengu
       }
     })
   }
-  
+
   function findByUuid (uuid) {
     return lenguagesGamesModel.findOne({
       where: {
