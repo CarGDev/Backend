@@ -2,15 +2,17 @@
 
 const { nanoid } = require('nanoid')
 const auth = require('../auth')
+const utils = require('../../../../Blood-Stream-db/utils/index')
+const config = require('../../../../config/config')
 const TABLA = 'users'
 const ID = 'UserId'
 
-module.exports = function (injectedStore) {
-  const store = injectedStore
+module.exports = async function (injectedStore) {
+  const { Users } = await injectedStore(config(false)).catch(utils.handleFatalError)
 
   async function list () {
     console.log('listing users')
-    users = await store.Users.findAll()
+    users = await Users.findAll().catch(utils.handleFatalError)
     return users
   }
 

@@ -82,6 +82,8 @@ async function run () {
 
   console.log('------------Message---------------')
   console.log(message)
+  const usersList = await Users.findAll().catch(utils.handleFatalError)
+  console.log(usersList)
 }
 
 run()
