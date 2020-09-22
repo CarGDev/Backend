@@ -16,17 +16,40 @@ module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lengu
       return result.toJSON()
     }
   }
+  
   function findById (id) {
-    return lenguagesGamesModel.findById(id)
+    return lenguagesGamesModel.findOne({
+      where: {
+        id
+      }
+    })
+  }
+  
+  function findByUuid (uuid) {
+    return lenguagesGamesModel.findOne({
+      where: {
+        uuid
+      }
+    })
   }
 
   function findAll () {
     return lenguagesGamesModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await usersModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     create,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }
