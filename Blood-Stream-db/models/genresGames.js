@@ -1,6 +1,6 @@
 'use strict'
 
-// const Sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 const setupDatabase = require('../lib/db')
 
 module.exports = function setupGenresGamesModel (config) {
@@ -10,6 +10,6 @@ module.exports = function setupGenresGamesModel (config) {
     uuid: {
       type: Sequelize.STRING,
       allowNull: false
-    },
+    }
   })
 }

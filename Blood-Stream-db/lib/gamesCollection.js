@@ -9,13 +9,13 @@ module.exports = function setupGamesCollection (gamesCollectionModel, usersModel
     }
 
     const games = await gamesModel.findOne({
-      where: { 
-        uuid: uuidGames 
+      where: {
+        uuid: uuidGames
       }
     })
     const users = await usersModel.findOne({
-      where: { 
-        uuid: uuidUsers 
+      where: {
+        uuid: uuidUsers
       }
     })
 

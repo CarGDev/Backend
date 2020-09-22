@@ -37,8 +37,6 @@ const setupGames = require('./lib/games')
 const setupUserRating = require('./lib/userRating')
 const setupGamesRating = require('./lib/gamesRating')
 const setupGameRating = require('./lib/gameRating')
-const games = require('./models/games')
-const platformGames = require('./lib/platformGames')
 
 module.exports = async function (config) {
   config = defaults(config, {
@@ -80,20 +78,20 @@ module.exports = async function (config) {
 
   LenguagesGamesModel.belongsTo(LenguagesModel)
   LenguagesGamesModel.belongsTo(GamesModel)
-  PlatformGamesModel.belongsTo(PlatformGames)
+  PlatformGamesModel.belongsTo(PlatformGamesModel)
   PlatformGamesModel.belongsTo(GamesModel)
-  
+
   GenresGamesModel.belongsTo(GenresGamesModel)
   GenresGamesModel.belongsTo(GamesModel)
-  
+
   GamesCollectionModel.belongsTo(UsersModel)
   GamesCollectionModel.belongsTo(GamesModel)
-  
+
   UserRatingModel.belongsTo(UsersModel)
   UserRatingModel.belongsTo(GamesRatingModel)
-  
-  GameRating.belongsTo(GamesModel)
-  GameRating.belongsTo(GamesRatingModel)
+
+  GameRatingModel.belongsTo(GamesModel)
+  GameRatingModel.belongsTo(GamesRatingModel)
 
   await sequelize.authenticate()
 
@@ -112,14 +110,14 @@ module.exports = async function (config) {
   const Games = setupGames(GamesModel)
   const Lenguages = setupLenguages(LenguagesModel)
   const LenguagesGames = setupLenguagesGames(GamesModel, LenguagesModel, LenguagesGamesModel)
-  const PlatformGames = setupPlatformGames(GamesModel,PlatformGames, PlatformGamesModel)
+  const PlatformGames = setupPlatformGames(GamesModel, PlatformsModel, PlatformGamesModel)
   const GenresGames = setupGenresGames(GenresGamesModel, GenresModel, GamesModel)
   const Genres = setupGenres(GenresModel)
   const GamesCollection = setupGamesCollection(GamesCollectionModel, UsersModel, GamesModel)
   const GamesRating = setupGamesRating(GamesRatingModel)
   const UserRating = setupUserRating(UserRatingModel, GamesRatingModel, UsersModel)
   const GameRating = setupGameRating(GameRatingModel, GamesRatingModel, GamesModel)
-  
+
   return {
     Message,
     Password,

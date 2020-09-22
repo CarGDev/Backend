@@ -3,28 +3,25 @@
 const db = require('../index')
 const config = require('configuration')
 const utils = require('../utils/index')
-const accessRol = require('../models/accessRol')
-const contact = require('../models/contact')
-const password = require('../models/password')
 
 async function run () {
   const {
     Message,
     Password,
     Users,
-    GamesCollection,
+    // GamesCollection,
     Contact,
     AccessRol,
-    Platform,
-    PlatformGames,
-    Lenguages,
-    LenguagesGames,
-    Genres,
-    GenresGames,
-    Games,
-    UserRating,
-    GamesRating,
-    GameRating
+    Platform
+    // PlatformGames,
+    // Lenguages,
+    // LenguagesGames,
+    // Genres,
+    // GenresGames,
+    // Games,
+    // UserRating,
+    // GamesRating,
+    // GameRating
   } = await db(config(false)).catch(utils.handleFatalError)
 
   console.log('------------Creation Info---------------')
@@ -84,8 +81,6 @@ async function run () {
 
   console.log('------------Message---------------')
   console.log(message)
-
-
 }
 
 run()
