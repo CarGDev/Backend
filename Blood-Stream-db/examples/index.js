@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../index')
-const config = require('configuration')
+const config = require('../../config/config')
 const utils = require('../utils/index')
 
 
