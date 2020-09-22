@@ -1,66 +1,63 @@
 'use strict'
 
 const test = require('ava')
-const sinon = require('sinon')
-const proxyquire = require('proxyquire')
-const usersFixture = require('./fixtures/users')
+
+let db = null
 const config = {
   loggin: function () {}
 }
 
-/* const UsersStub = {
-  belongsTo: sinon.spy()
-} */
-
-const single = Object.assign({}, usersFixture.single)
-const id = 1
-const uuid = 'yyy'
-let UsersStub = null
-let db = null
-let sandbox = null
-const connectedArgs = {
-  where: { connected: true }
-}
-
-const usernameArgs = {
-  where: { username: 'wyrtcsghhfjztx', connected: true }
-}
-
-const uuidArgs = {
-  where: {
-    uuid
-  }
-}
-
-const newUser = {
-  uuid: 'y1retx',
-  Nickname: 'test2',
-  Country: 'Mexico',
-  Postal_Code: 20208,
-  Birthday: '1989-09-15 07:55:10.587458',
-  Date_Created: '2020-09-15 07:55:10.587458',
-  Status: true
-}
-
 test.beforeEach(async () => {
-  sandbox = sinon.createSandbox()
-  UsersStub = {
-    hasMany: sandbox.spy()
-  }
-  const setupDatabase = proxyquire('../index.js', {
-    './models/users': () => UsersStub
-  })
+  const setupDatabase = require('../index')
   db = await setupDatabase(config)
 })
 
-test.afterEach(() => {
-  sandbox && sandbox.restore()
+test('Message', t => {
+  t.truthy(db.Message, 'Message table should exist')
 })
 
-test('users', t => {
-  t.truthy(db.users, 'Users table should exist')
+test('Password', t => {
+  t.truthy(db.Password, 'Password table should exist')
 })
-
-test.serial('Setup', t => {
-  t.true(UsersStub.hasMany.called, 'UsersModel.hasMany was executed')
+test('Users', t => {
+  t.truthy(db.Users, 'Users table should exist')
+})
+test('GamesCollection', t => {
+  t.truthy(db.GamesCollection, 'GamesCollection table should exist')
+})
+test('Contact', t => {
+  t.truthy(db.Contact, 'Contact table should exist')
+})
+test('AccessRol', t => {
+  t.truthy(db.AccessRol, 'AccessRol table should exist')
+})
+test('Platform', t => {
+  t.truthy(db.Platform, 'Platform table should exist')
+})
+test('PlatformGames', t => {
+  t.truthy(db.PlatformGames, 'PlatformGames table should exist')
+})
+test('Lenguages', t => {
+  t.truthy(db.Lenguages, 'Lenguages table should exist')
+})
+test('LenguagesGames', t => {
+  t.truthy(db.LenguagesGames, 'LenguagesGames table should exist')
+})
+test('Genres', t => {
+  t.truthy(db.Genres, 'Genres table should exist')
+})
+test('GenresGames', t => {
+  t.truthy(db.GenresGames, 'GenresGames table should exist')
+})
+test('Games', t => {
+  t.truthy(db.Games, 'Games table should exist')
+})
+test('UserRating', t => {
+  t.truthy(db.UserRating, 'UserRating table should exist')
+})
+test('GamesRating', t => {
+  t.truthy(db.GamesRating, 'GamesRating table should exist')
+})
+test('GameRating', t => {
+  t.truthy(db.GameRating, 'GameRating table should exist')
 })
