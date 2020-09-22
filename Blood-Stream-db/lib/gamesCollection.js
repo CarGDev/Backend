@@ -17,26 +17,39 @@ module.exports = function setupGamesCollection (gamesCollectionModel) {
     return result.toJSON()
   }
 
-  function findById (id) {
-    return gamesCollectionModel.findById(id)
+  async function findById (id) {
+    return await gamesCollectionModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findByUuid (uuid) {
-    return gamesCollectionModel.findOne({
+  async function findByUuid (uuid) {
+    return await gamesCollectionModel.findOne({
       where: {
         uuid
       }
     })
   }
 
-  function findAll () {
-    return gamesCollectionModel.findAll()
+  async function findAll () {
+    return await gamesCollectionModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await gamesCollectionModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }
