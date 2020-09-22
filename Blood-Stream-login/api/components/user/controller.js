@@ -6,18 +6,21 @@ const utils = require('../../../../Blood-Stream-db/utils/index')
 const config = require('../../../../config/config')
 const TABLA = 'users'
 const ID = 'UserId'
+let users
 
-module.exports = async function (injectedStore) {
-  const { Users } = await injectedStore(config(false)).catch(utils.handleFatalError)
-
+module.exports = function (injectedStore) {
+  const store = injectedStore
+  
   async function list () {
+    let { Users } = await store(config(false)).catch(utils.handleFatalError)
     console.log('listing users')
     users = await Users.findAll().catch(utils.handleFatalError)
     return users
   }
-
-  function get (id) {
-    return store.get(TABLA, id, ID)
+  
+  async function get (id) {
+    let { Users } = await store(config(false)).catch(utils.handleFatalError)
+    return Users.findById(id)
   }
 
   async function upsert (body) {
