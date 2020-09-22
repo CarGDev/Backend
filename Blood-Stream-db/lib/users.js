@@ -1,5 +1,4 @@
 'use strict'
-const debug = require('debug')
 
 module.exports = function setupUsers (usersModel, platformModel, accessRolModel, passwordModel, contactModel) {
   async function createOrUpdate (users, uuidPlat, uuidAccRol, uuidCont, uuidPass) {
@@ -58,26 +57,39 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     return result.toJSON()
   }
 
-  function findById (id) {
-    return usersModel.findById(id)
+  async function findById (id) {
+    return await usersModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findByUuid (uuid) {
-    return usersModel.findOne({
+  async function findByUuid (uuid) {
+    return await usersModel.findOne({
       where: {
         uuid
       }
     })
   }
 
-  function findAll () {
-    return usersModel.findAll()
+  async function findAll () {
+    return await usersModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await usersModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }

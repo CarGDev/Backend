@@ -34,10 +34,19 @@ module.exports = function setupAccessRol (AccessRolModel) {
     return AccessRolModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await AccessRolModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }
