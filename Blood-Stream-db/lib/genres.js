@@ -38,7 +38,7 @@ module.exports = function setupGenres (genresModel) {
   }
 
   async function deleteById (id) {
-    return await usersModel.destroy({
+    return await genresModel.destroy({
       where: {
         id
       }

@@ -38,7 +38,7 @@ module.exports = function setupGamesRating (gamesRatingModel) {
   }
 
   async function deleteById (id) {
-    return await usersModel.destroy({
+    return await gamesRatingModel.destroy({
       where: {
         id
       }
