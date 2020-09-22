@@ -27,13 +27,10 @@ module.exports = function setupUsersModel (config) {
       type: Sequelize.DATE,
       allowNull: false
     },
-    Date_Created: {
-      type: Sequelize.DATE,
-      allowNull: false
-    },
     Status: {
       type: Sequelize.BOOLEAN,
       allowNull: false
     }
+
   })
 }

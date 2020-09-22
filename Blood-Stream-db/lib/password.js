@@ -10,7 +10,7 @@ module.exports = function setupPassword (passwordModel) {
 
     const existingpassword = await passwordModel.findOne(cond)
     if (existingpassword) {
-      const updated = await passwordModel.update(cond)
+      const updated = await passwordModel.update(password, cond)
       return updated ? passwordModel.findOne(cond) : existingpassword
     }
     const result = await passwordModel.create(password)
