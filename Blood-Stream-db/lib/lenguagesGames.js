@@ -9,13 +9,13 @@ module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lengu
     }
 
     const games = await gamesModel.findOne({
-      where: { 
-        uuid: uuidGames 
+      where: {
+        uuid: uuidGames
       }
     })
     const lenguages = await lenguagesModel.findOne({
-      where: { 
-        uuid: uuidLenguages 
+      where: {
+        uuid: uuidLenguages
       }
     })
 

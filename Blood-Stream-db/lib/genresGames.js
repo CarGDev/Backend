@@ -10,13 +10,13 @@ module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesMo
     }
 
     const games = await gamesModel.findOne({
-      where: { 
-        uuid: uuidGames 
+      where: {
+        uuid: uuidGames
       }
     })
     const genre = await genreModel.findOne({
-      where: { 
-        uuid: uuidGenres 
+      where: {
+        uuid: uuidGenres
       }
     })
 

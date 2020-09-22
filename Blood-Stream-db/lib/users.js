@@ -7,7 +7,7 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
         uuid: users.uuid
       }
     }
-    
+
     const platform = await platformModel.findOne({
       where: {
         uuid: uuidPlat
@@ -47,7 +47,7 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
       const updated = await usersModel.update(users, cond)
       return updated ? usersModel.findOne(cond) : existingusers
     }
-    
+
     const result = await usersModel.create(users)
     return result.toJSON()
   }

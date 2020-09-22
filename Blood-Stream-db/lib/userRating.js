@@ -9,13 +9,13 @@ module.exports = function setupUserRating (userRatingModel, gamesRatingModel, us
     }
 
     const gamesRating = await gamesRatingModel.findOne({
-      where: { 
-        uuid: uuidGamesRating 
+      where: {
+        uuid: uuidGamesRating
       }
     })
     const users = await usersModel.findOne({
-      where: { 
-        uuid: uuidUsers 
+      where: {
+        uuid: uuidUsers
       }
     })
 

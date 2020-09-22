@@ -9,13 +9,13 @@ module.exports = function setupPlatformGames (gamesModel, platformModel, platfor
     }
 
     const games = await gamesModel.findOne({
-      where: { 
-        uuid: uuidGames 
+      where: {
+        uuid: uuidGames
       }
     })
     const platform = await platformModel.findOne({
-      where: { 
-        uuid: uuidPlatforms 
+      where: {
+        uuid: uuidPlatforms
       }
     })
 
@@ -26,13 +26,13 @@ module.exports = function setupPlatformGames (gamesModel, platformModel, platfor
       Object.assign(platformsGames, { platformId: platform.id })
     }
 
-    const existingusers = await platformsGamesModel.findOne(cond)
+    const existingusers = await platformGamesModel.findOne(cond)
     if (existingusers) {
-      const updated = await platformsGamesModel.update(platformsGames, cond)
-      return updated ? platformsGamesModel.findOne(cond) : existingusers
+      const updated = await platformGamesModel.update(platformsGames, cond)
+      return updated ? platformGamesModel.findOne(cond) : existingusers
     }
 
-    const result = await platformsGamesModel.create(platformsGames)
+    const result = await platformGamesModel.create(platformsGames)
     return result.toJSON()
   }
 
