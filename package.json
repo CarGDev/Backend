@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/CarGDev/Backend#readme",
   "devDependencies": {
+    "nodemon": "^2.0.4",
     "standard": "^14.3.4"
   },
   "dependencies": {
