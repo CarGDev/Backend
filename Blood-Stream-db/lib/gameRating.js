@@ -16,17 +16,40 @@ module.exports = function setupGameRating (gameRatingModel, gamesRatingModel, ga
       return result.toJSON()
     }
   }
-  function findById (id) {
-    return gameRatingModel.findById(id)
+  
+  async function findById (id) {
+    return await gameRatingModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findAll () {
-    return gameRatingModel.findAll()
+  async function findByUuid (uuid) {
+    return await gameRatingModel.findOne({
+      where: {
+        uuid
+      }
+    })
+  }
+
+  async function findAll () {
+    return await gameRatingModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await gameRatingModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
     create,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }
