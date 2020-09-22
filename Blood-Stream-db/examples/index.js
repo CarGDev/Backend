@@ -7,7 +7,7 @@ const accessRol = require('../models/accessRol')
 const contact = require('../models/contact')
 const password = require('../models/password')
 
-async function run() {
+async function run () {
   const {
     Message,
     Password,
@@ -26,23 +26,23 @@ async function run() {
     GamesRating,
     GameRating
   } = await db(config(false)).catch(utils.handleFatalError)
-  
+
   console.log('------------Creation Info---------------')
-  
+
   const contact = await Contact.createOrUpdate({
     uuid: 'xxx',
     email: 'dummy@gmail.com',
-    phone: '4493525020',
+    phone: '4493525020'
   })
 
   console.log('------------Contact---------------')
   console.log(contact)
-  
+
   const password = await Password.createOrUpdate({
     uuid: 'y1yy',
-    JWT_Password: 'asdflkjalsjdflakjsdfoajwoew',
+    JWT_Password: 'asdflkjalsjdflakjsdfoajwoew'
   }).catch(utils.handleFatalError)
-  
+
   console.log('------------Password---------------')
   console.log(password)
 
@@ -51,7 +51,7 @@ async function run() {
     Rol: 'Administrador',
     Level: 50
   }).catch(utils.handleFatalError)
-  
+
   console.log('------------AccessRol---------------')
   console.log(accessRol)
 
@@ -59,7 +59,7 @@ async function run() {
     uuid: 'yy21',
     Platform: 'Xbox'
   }).catch(utils.handleFatalError)
-  
+
   console.log('------------Platform---------------')
   console.log(platform)
 
@@ -75,7 +75,7 @@ async function run() {
 
   console.log('------------Users---------------')
   console.log(users)
-  
+
   console.log('------------Find Info---------------')
   console.log('------------User Info By ID---------------')
   const userById = await Users.findById(users.id).catch(utils.handleFatalError)
@@ -93,7 +93,6 @@ async function run() {
   const userAll2 = await Users.findAll().catch(utils.handleFatalError)
   console.log(userAll2)
   console.log('------------User Info By ID---------------')
-
 }
 
 run()

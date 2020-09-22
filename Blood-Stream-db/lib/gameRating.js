@@ -16,7 +16,7 @@ module.exports = function setupGameRating (gameRatingModel, gamesRatingModel, ga
       return result.toJSON()
     }
   }
-  
+
   async function findById (id) {
     return await gameRatingModel.findOne({
       where: {

@@ -24,7 +24,7 @@ module.exports = function setupPlatformGames (gamesModel, platformModel, platfor
       }
     })
   }
-  
+
   function findByUuid (uuid) {
     return platformGamesModel.findOne({
       where: {
