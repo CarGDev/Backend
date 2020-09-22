@@ -16,17 +16,40 @@ module.exports = function setupUserRating (userRatingModel, gamesRatingModel, us
       return result.toJSON()
     }
   }
+
   function findById (id) {
-    return userRatingModel.findById(id)
+    return userRatingModel.findOne({
+      where: {
+        id
+      }
+    })
+  }
+
+  function findByUuid (uuid) {
+    return userRatingModel.findOne({
+      where: {
+        uuid
+      }
+    })
   }
 
   function findAll () {
     return userRatingModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await usersModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     create,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }
