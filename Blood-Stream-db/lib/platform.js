@@ -18,7 +18,11 @@ module.exports = function setupPlatform (platformModel) {
   }
 
   function findById (id) {
-    return platformModel.findById(id)
+    return platformModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
   function findByUuid (uuid) {
@@ -33,10 +37,19 @@ module.exports = function setupPlatform (platformModel) {
     return platformModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await platformModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }
