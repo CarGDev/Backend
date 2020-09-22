@@ -20,7 +20,11 @@ module.exports = function setupLenguages (lenguagesModel) {
   }
 
   function findById (id) {
-    return lenguagesModel.findById(id)
+    return lenguagesModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
   function findByUuid (uuid) {
@@ -35,10 +39,19 @@ module.exports = function setupLenguages (lenguagesModel) {
     return lenguagesModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await lenguagesModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }

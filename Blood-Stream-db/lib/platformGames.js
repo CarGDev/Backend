@@ -1,32 +1,74 @@
 'use strict'
 
 module.exports = function setupPlatformGames (gamesModel, platformModel, platformGamesModel) {
-  async function create (uuidGames, uuidPlatform, platformGames) {
+  async function createOrUpdate (uuidGames, uuidPlatforms, platformsGames) {
+    const cond = {
+      where: {
+        uuid: platformsGames.uuid
+      }
+    }
+
     const games = await gamesModel.findOne({
-      where: { uuidGames }
+      where: {
+        uuid: uuidGames
+      }
     })
     const platform = await platformModel.findOne({
-      where: { uuidPlatform }
+      where: {
+        uuid: uuidPlatforms
+      }
     })
 
-    if (games && platform) {
-      Object.assign(platformGames, { gamesId: games.id })
-      Object.assign(platformGames, { platformId: platform.id })
-      const result = await platformGamesModel.create(platformGames)
-      return result.toJSON()
+    if (games) {
+      Object.assign(platformsGames, { gamesId: games.id })
     }
+    if (platform) {
+      Object.assign(platformsGames, { platformId: platform.id })
+    }
+
+    const existingusers = await platformGamesModel.findOne(cond)
+    if (existingusers) {
+      const updated = await platformGamesModel.update(platformsGames, cond)
+      return updated ? platformGamesModel.findOne(cond) : existingusers
+    }
+
+    const result = await platformGamesModel.create(platformsGames)
+    return result.toJSON()
   }
+
   function findById (id) {
-    return platformGamesModel.findById(id)
+    return platformGamesModel.findOne({
+      where: {
+        id
+      }
+    })
+  }
+
+  function findByUuid (uuid) {
+    return platformGamesModel.findOne({
+      where: {
+        uuid
+      }
+    })
   }
 
   function findAll () {
     return platformGamesModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await platformGamesModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
-    create,
+    createOrUpdate,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }

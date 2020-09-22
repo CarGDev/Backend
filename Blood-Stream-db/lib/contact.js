@@ -10,33 +10,46 @@ module.exports = function setupContact (contactModel) {
 
     const existingcontact = await contactModel.findOne(cond)
     if (existingcontact) {
-      const updated = await contactModel.update(cond)
+      const updated = await contactModel.update(contact, cond)
       return updated ? contactModel.findOne(cond) : existingcontact
     }
     const result = await contactModel.create(contact)
     return result.toJSON()
   }
 
-  function findById (id) {
-    return contactModel.findById(id)
+  async function findById (id) {
+    return await contactModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findByUuid (uuid) {
-    return contactModel.findOne({
+  async function findByUuid (uuid) {
+    return await contactModel.findOne({
       where: {
         uuid
       }
     })
   }
 
-  function findAll () {
-    return contactModel.findAll()
+  async function findAll () {
+    return await contactModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await contactModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }

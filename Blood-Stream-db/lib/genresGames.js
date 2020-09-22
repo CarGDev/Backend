@@ -2,32 +2,74 @@
 'use strict'
 
 module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesModel) {
-  async function create (uuidGenres, uuidGames, genres) {
-    const genresInfo = await genreModel.findOne({
-      where: { uuidGenres }
-    })
-    const games = await gamesModel.findOne({
-      where: { uuidGames }
-    })
-
-    if (genresInfo && games) {
-      Object.assign(genres, { genresId: genres.id })
-      Object.assign(genres, { gamesId: games.id })
-      const result = await genreGamesModel.create(genres)
-      return result.toJSON()
+  async function createOrUpdate (uuidGames, uuidGenres, genreGames) {
+    const cond = {
+      where: {
+        uuid: genreGames.uuid
+      }
     }
-  }
-  function findById (id) {
-    return genreGamesModel.findById(id)
+
+    const games = await gamesModel.findOne({
+      where: {
+        uuid: uuidGames
+      }
+    })
+    const genre = await genreModel.findOne({
+      where: {
+        uuid: uuidGenres
+      }
+    })
+
+    if (games) {
+      Object.assign(genreGames, { gamesId: games.id })
+    }
+    if (genre) {
+      Object.assign(genreGames, { genreId: genre.id })
+    }
+
+    const existingusers = await genreGamesModel.findOne(cond)
+    if (existingusers) {
+      const updated = await genreGamesModel.update(genreGames, cond)
+      return updated ? genreGamesModel.findOne(cond) : existingusers
+    }
+
+    const result = await genreGamesModel.create(genreGames)
+    return result.toJSON()
   }
 
-  function findAll () {
-    return genreGamesModel.findAll()
+  async function findById (id) {
+    return await genreGamesModel.findOne({
+      where: {
+        id
+      }
+    })
+  }
+
+  async function findByUuid (uuid) {
+    return await genreGamesModel.findOne({
+      where: {
+        uuid
+      }
+    })
+  }
+
+  async function findAll () {
+    return await genreGamesModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await genreGamesModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
-    create,
+    createOrUpdate,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }

@@ -1,32 +1,74 @@
 'use strict'
 
 module.exports = function setupLanguagesGames (gamesModel, lenguagesModel, lenguagesGamesModel) {
-  async function create (uuidGames, uuidLenguages, lenguagesGames) {
+  async function createOrUpdate (uuidGames, uuidLenguages, lenguagesGames) {
+    const cond = {
+      where: {
+        uuid: lenguagesGames.uuid
+      }
+    }
+
     const games = await gamesModel.findOne({
-      where: { uuidGames }
+      where: {
+        uuid: uuidGames
+      }
     })
     const lenguages = await lenguagesModel.findOne({
-      where: { uuidLenguages }
+      where: {
+        uuid: uuidLenguages
+      }
     })
 
-    if (games && lenguages) {
+    if (games) {
       Object.assign(lenguagesGames, { gamesId: games.id })
-      Object.assign(lenguagesGames, { lenguagesId: lenguages.id })
-      const result = await lenguagesGamesModel.create(lenguagesGames)
-      return result.toJSON()
     }
+    if (lenguages) {
+      Object.assign(lenguagesGames, { lenguagesId: lenguages.id })
+    }
+
+    const existingusers = await lenguagesGamesModel.findOne(cond)
+    if (existingusers) {
+      const updated = await lenguagesGamesModel.update(lenguagesGames, cond)
+      return updated ? lenguagesGamesModel.findOne(cond) : existingusers
+    }
+
+    const result = await lenguagesGamesModel.create(lenguagesGames)
+    return result.toJSON()
   }
+
   function findById (id) {
-    return lenguagesGamesModel.findById(id)
+    return lenguagesGamesModel.findOne({
+      where: {
+        id
+      }
+    })
+  }
+
+  function findByUuid (uuid) {
+    return lenguagesGamesModel.findOne({
+      where: {
+        uuid
+      }
+    })
   }
 
   function findAll () {
     return lenguagesGamesModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await lenguagesGamesModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
-    create,
+    createOrUpdate,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }

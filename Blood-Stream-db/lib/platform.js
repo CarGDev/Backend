@@ -10,7 +10,7 @@ module.exports = function setupPlatform (platformModel) {
 
     const existingplatform = await platformModel.findOne(cond)
     if (existingplatform) {
-      const updated = await platformModel.update(cond)
+      const updated = await platformModel.update(platform, cond)
       return updated ? platformModel.findOne(cond) : existingplatform
     }
     const result = await platformModel.create(platform)
@@ -18,7 +18,11 @@ module.exports = function setupPlatform (platformModel) {
   }
 
   function findById (id) {
-    return platformModel.findById(id)
+    return platformModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
   function findByUuid (uuid) {
@@ -33,10 +37,19 @@ module.exports = function setupPlatform (platformModel) {
     return platformModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await platformModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }
