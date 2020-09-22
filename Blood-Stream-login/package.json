@@ -33,7 +33,8 @@
     "redis": "^3.0.2",
     "request": "^2.88.2",
     "swagger-ui-express": "^4.1.4",
-    "databasePostgres": "file:../Blood-Stream-db"
+    "dataPostgres": "file:../Blood-Stream-db",
+    "dbConfig": "file:../config"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
