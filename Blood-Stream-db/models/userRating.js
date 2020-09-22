@@ -7,5 +7,9 @@ module.exports = function setupUserRatingModel (config) {
   const sequelize = setupDatabase(config)
 
   return sequelize.define('userRating', {
+    uuid: {
+      type: Sequelize.STRING,
+      allowNull: false
+    }
   })
 }
