@@ -1,8 +1,8 @@
 'use strict'
 
 // const store = require('../../../store/mysql')
+// const store = require('../../../store/dummy')
+const store = require('configuration')
 const ctrl = require('./controller')
-// const store = require('../../../store/mysql')
-const store = require('../../../store/dummy')
 
 module.exports = ctrl(store)
