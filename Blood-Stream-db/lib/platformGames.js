@@ -16,17 +16,40 @@ module.exports = function setupPlatformGames (gamesModel, platformModel, platfor
       return result.toJSON()
     }
   }
+
   function findById (id) {
-    return platformGamesModel.findById(id)
+    return platformGamesModel.findOne({
+      where: {
+        id
+      }
+    })
+  }
+  
+  function findByUuid (uuid) {
+    return platformGamesModel.findOne({
+      where: {
+        uuid
+      }
+    })
   }
 
   function findAll () {
     return platformGamesModel.findAll()
   }
 
+  async function deleteById (id) {
+    return await platformGamesModel.destroy({
+      where: {
+        id
+      }
+    })
+  }
+
   return {
     create,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }
