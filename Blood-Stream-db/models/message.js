@@ -3,24 +3,20 @@
 const Sequelize = require('sequelize')
 const setupDatabase = require('../lib/db')
 
-module.exports = function setupGenresModel (config) {
+module.exports = function setupMessageModel (config) {
   const sequelize = setupDatabase(config)
 
-  return sequelize.define('genres', {
+  return sequelize.define('message', {
     uuid: {
       type: Sequelize.STRING,
       allowNull: false
     },
     Message: {
       type: Sequelize.TEXT,
-      allowNull: false
+      allowNull: true
     },
     Post_Like: {
       type: Sequelize.BOOLEAN,
-      allowNull: false
-    },
-    Date_Created: {
-      type: Sequelize.DATE,
       allowNull: false
     }
   })

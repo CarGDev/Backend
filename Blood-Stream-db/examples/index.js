@@ -76,23 +76,16 @@ async function run () {
   console.log('------------Users---------------')
   console.log(users)
 
-  console.log('------------Find Info---------------')
-  console.log('------------User Info By ID---------------')
-  const userById = await Users.findById(users.id).catch(utils.handleFatalError)
-  console.log(userById)
-  console.log('------------User Info By Uuid---------------')
-  const userByUuid = await Users.findByUuid(users.uuid).catch(utils.handleFatalError)
-  console.log(userByUuid)
-  console.log('------------User All---------------')
-  const userAll = await Users.findAll().catch(utils.handleFatalError)
-  console.log(userAll)
-  console.log('------------Delete---------------')
-  const userDelete = await Users.deleteById(2).catch(utils.handleFatalError)
-  console.log(userDelete)
-  console.log('------------User All---------------')
-  const userAll2 = await Users.findAll().catch(utils.handleFatalError)
-  console.log(userAll2)
-  console.log('------------User Info By ID---------------')
+  const message = await Message.createOrUpdate({
+    uuid: 'yyywe',
+    Message: 'lorem ipsum ajksdflkashdfljkahq qwouiflafkf mi ra asdfanflqwk',
+    Post_Like: false
+  }, users.uuid)
+
+  console.log('------------Message---------------')
+  console.log(message)
+
+
 }
 
 run()

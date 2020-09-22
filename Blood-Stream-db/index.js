@@ -69,7 +69,7 @@ module.exports = async function (config) {
   const GamesRatingModel = setupGamesRatingModel(config)
   const GameRatingModel = setupGameRatingModel(config)
 
-  // UsersModel.hasMany(MessagesModel)
+  UsersModel.hasMany(MessagesModel)
   // UsersModel.hasMany(GamesCollectionModel)
   // UsersModel.hasMany(ContactModel)
   // UsersModel.hasMany(PlatformsModel)
@@ -112,7 +112,7 @@ module.exports = async function (config) {
     await sequelize.sync({ force: true })
   }
 
-  const Message = setupMessage(MessagesModel)
+  const Message = setupMessage(MessagesModel, UsersModel)
   const Password = setupPassword(PasswordModel)
   const Users = setupUsers(UsersModel, PlatformsModel, AccessRolModel, PasswordModel, ContactModel)
   const GamesCollection = setupGamesCollection(GamesCollectionModel)
