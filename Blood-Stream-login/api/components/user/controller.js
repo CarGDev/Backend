@@ -2,32 +2,15 @@
 
 const { nanoid } = require('nanoid')
 const auth = require('../auth')
-
 const TABLA = 'users'
 const ID = 'UserId'
-module.exports = function (injectedStore, injectedCache) {
-  let cache = injectedCache
-  let store = injectedStore
-  if (!store) {
-    console.log('Dummy store flag')
-    store = require('../../../store/dummy')
-  }
 
-  if (!cache) {
-    console.log('Cache Dummy store flag')
-    cache = require('../../../store/dummy')
-  }
+module.exports = function (injectedStore) {
+  const store = injectedStore
 
   async function list () {
-    let users = await cache.list(TABLA)
-
-    if (!users) {
-      console.log('Adding to cache')
-      users = await store.list(TABLA)
-      cache.upsert(TABLA, users)
-    } else {
-      console.log('Cache exists')
-    }
+    console.log('listing users')
+    users = await store.Users.findAll()
     return users
   }
 
@@ -57,26 +40,14 @@ module.exports = function (injectedStore, injectedCache) {
 
     return store.upsert(TABLA, user)
   }
+  async function deleteTable (id) {
 
-  function follow (from, to) {
-    return store.upsert(`${TABLA}_follow`, {
-      user_from: from,
-      user_to: to
-    })
-  }
-
-  function followers (user) {
-    const join = {}
-    join[TABLA] = 'user_to'
-    const query = { user_from: user }
-    return store.query(`${TABLA}_follow`, query, join)
   }
 
   return {
     list,
     get,
     upsert,
-    follow,
-    followers
+    deleteTable
   }
 }
