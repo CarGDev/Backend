@@ -17,17 +17,40 @@ module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesMo
       return result.toJSON()
     }
   }
-  function findById (id) {
-    return genreGamesModel.findById(id)
+
+  async function findById (id) {
+    return await genreGamesModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findAll () {
-    return genreGamesModel.findAll()
+  async function findByUuid (uuid) {
+    return await genreGamesModel.findOne({
+      where: {
+        uuid
+      }
+    })
+  }
+
+  async function findAll () {
+    return await genreGamesModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await genreGamesModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
     create,
     findById,
-    findAll
+    findByUuid,
+    findAll,
+    deleteById
   }
 }
