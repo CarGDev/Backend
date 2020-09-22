@@ -18,20 +18,24 @@ module.exports = function setupAccessRol (AccessRolModel) {
     return result.toJSON()
   }
 
-  function findById (id) {
-    return AccessRolModel.findById(id)
+  async function findById (id) {
+    return await AccessRolModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findByUuid (uuid) {
-    return AccessRolModel.findOne({
+  async function findByUuid (uuid) {
+    return await AccessRolModel.findOne({
       where: {
         uuid
       }
     })
   }
 
-  function findAll () {
-    return AccessRolModel.findAll()
+  async function findAll () {
+    return await AccessRolModel.findAll()
   }
 
   async function deleteById (id) {
