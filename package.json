@@ -56,8 +56,5 @@
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0",
     "debug": "^4.1.1"
-  },
-  "engines": {
-    "node": "0.10.x"
   }
 }
