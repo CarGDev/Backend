@@ -1,7 +1,7 @@
 'use strict'
 
-module.exports = function setupMessages (messagesModel) {
-  async function createOrUpdate (messages) {
+module.exports = function setupMessages (messagesModel, usersModel) {
+  async function createOrUpdate (messages, uuid) {
     const cond = {
       where: {
         uuid: messages.uuid
@@ -13,8 +13,17 @@ module.exports = function setupMessages (messagesModel) {
       const updated = await messagesModel.update(cond)
       return updated ? messagesModel.findOne(cond) : existingmessages
     }
-    const result = await messagesModel.create(messages)
-    return result.toJSON()
+    const existingusers = await usersModel.findOne({
+      where: {
+        uuid
+      }
+    })
+
+    if (existingusers) {
+      Object.assign(messages, { userId: existingusers.id })
+      const result = await messagesModel.create(messages)
+      return result.toJSON()
+    }
   }
 
   function findById (id) {
