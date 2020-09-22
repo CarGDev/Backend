@@ -2,20 +2,39 @@
 'use strict'
 
 module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesModel) {
-  async function create (uuidGenres, uuidGames, genres) {
-    const genresInfo = await genreModel.findOne({
-      where: { uuidGenres }
-    })
+  async function createOrUpdate (uuidGames, uuidGenres, genreGames) {
+    const cond = {
+      where: {
+        uuid: genreGames.uuid
+      }
+    }
+
     const games = await gamesModel.findOne({
-      where: { uuidGames }
+      where: { 
+        uuid: uuidGames 
+      }
+    })
+    const genre = await genreModel.findOne({
+      where: { 
+        uuid: uuidGenres 
+      }
     })
 
-    if (genresInfo && games) {
-      Object.assign(genres, { genresId: genres.id })
-      Object.assign(genres, { gamesId: games.id })
-      const result = await genreGamesModel.create(genres)
-      return result.toJSON()
+    if (games) {
+      Object.assign(genreGames, { gamesId: games.id })
     }
+    if (genre) {
+      Object.assign(genreGames, { genreId: genre.id })
+    }
+
+    const existingusers = await genreGamesModel.findOne(cond)
+    if (existingusers) {
+      const updated = await genreGamesModel.update(genreGames, cond)
+      return updated ? genreGamesModel.findOne(cond) : existingusers
+    }
+
+    const result = await genreGamesModel.create(genreGames)
+    return result.toJSON()
   }
 
   async function findById (id) {
@@ -47,7 +66,7 @@ module.exports = function setupGenresGames (genreGamesModel, genreModel, gamesMo
   }
 
   return {
-    create,
+    createOrUpdate,
     findById,
     findByUuid,
     findAll,

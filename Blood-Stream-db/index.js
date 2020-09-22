@@ -11,7 +11,7 @@ const setupAccessRolModel = require('./models/accessRol')
 const setupPlatformModel = require('./models/platform')
 const setupPlatformGamesModel = require('./models/platformGames')
 const setupLanguagesModel = require('./models/lenguages')
-const setupLanguagesGamesModel = require('./models/lenguagesGames')
+const setupLenguagesGamesModel = require('./models/lenguagesGames')
 const setupGenresModel = require('./models/genres')
 const setupGenresGamesModel = require('./models/genresGames')
 const setupGamesModel = require('./models/games')
@@ -37,6 +37,8 @@ const setupGames = require('./lib/games')
 const setupUserRating = require('./lib/userRating')
 const setupGamesRating = require('./lib/gamesRating')
 const setupGameRating = require('./lib/gameRating')
+const games = require('./models/games')
+const platformGames = require('./lib/platformGames')
 
 module.exports = async function (config) {
   config = defaults(config, {
@@ -52,57 +54,46 @@ module.exports = async function (config) {
   })
 
   const sequelize = setupDatabase(config)
+
   const MessagesModel = setupMessageModel(config)
   const PasswordModel = setupPasswordModel(config)
   const UsersModel = setupUsersModel(config)
-  const GamesCollectionModel = setupGamesCollectionModel(config)
   const ContactModel = setupContactModel(config)
   const AccessRolModel = setupAccessRolModel(config)
   const PlatformsModel = setupPlatformModel(config)
-  const PlatformGamesModel = setupPlatformGamesModel(config)
-  const LenguagesModel = setupLanguagesModel(config)
-  const LanguagesGamesModel = setupLanguagesGamesModel(config)
-  const GenresModel = setupGenresModel(config)
-  const GenresGamesModel = setupGenresGamesModel(config)
   const GamesModel = setupGamesModel(config)
-  const UserRatingModel = setupUserRatingModel(config)
+  const LenguagesModel = setupLanguagesModel(config)
+  const LenguagesGamesModel = setupLenguagesGamesModel(config)
+  const PlatformGamesModel = setupPlatformGamesModel(config)
+  const GenresGamesModel = setupGenresGamesModel(config)
+  const GenresModel = setupGenresModel(config)
+  const GamesCollectionModel = setupGamesCollectionModel(config)
   const GamesRatingModel = setupGamesRatingModel(config)
+  const UserRatingModel = setupUserRatingModel(config)
   const GameRatingModel = setupGameRatingModel(config)
 
   UsersModel.hasMany(MessagesModel)
-  // UsersModel.hasMany(GamesCollectionModel)
-  // UsersModel.hasMany(ContactModel)
-  // UsersModel.hasMany(PlatformsModel)
-
-  // UsersModel.hasOne(PasswordModel)
-  // UsersModel.hasOne(UserRatingModel)
-  // UsersModel.hasOne(AccessRolModel)
-
   UsersModel.belongsTo(PlatformsModel)
   UsersModel.belongsTo(ContactModel)
   UsersModel.belongsTo(AccessRolModel)
   UsersModel.belongsTo(PasswordModel)
-  // GamesCollectionModel.belongsTo(UsersModel)
-  // GamesCollectionModel.belongsTo(GamesModel)
-  // AccessRolModel.belongsTo(UsersModel)
-  // PasswordModel.belongsTo(UsersModel)
-  // MessagesModel.belongsTo(UsersModel)
-  // UserRatingModel.belongsTo(UsersModel)
-  // UserRatingModel.belongsTo(GamesRatingModel)
 
-  // GamesModel.hasMany(GamesCollectionModel)
-
-  // LanguagesGamesModel.belongsTo(GamesModel)
-  // LanguagesGamesModel.belongsTo(LenguagesModel)
-
-  // GenresGamesModel.belongsTo(GamesModel)
-  // GenresGamesModel.belongsTo(GenresModel)
-
-  // PlatformGamesModel.belongsTo(GamesModel)
-  // PlatformGamesModel.belongsTo(PlatformsModel)
-
-  // GameRatingModel.belongsTo(GamesModel)
-  // GameRatingModel.belongsTo(GamesRatingModel)
+  LenguagesGamesModel.belongsTo(LenguagesModel)
+  LenguagesGamesModel.belongsTo(GamesModel)
+  PlatformGamesModel.belongsTo(PlatformGames)
+  PlatformGamesModel.belongsTo(GamesModel)
+  
+  GenresGamesModel.belongsTo(GenresGamesModel)
+  GenresGamesModel.belongsTo(GamesModel)
+  
+  GamesCollectionModel.belongsTo(UsersModel)
+  GamesCollectionModel.belongsTo(GamesModel)
+  
+  UserRatingModel.belongsTo(UsersModel)
+  UserRatingModel.belongsTo(GamesRatingModel)
+  
+  GameRating.belongsTo(GamesModel)
+  GameRating.belongsTo(GamesRatingModel)
 
   await sequelize.authenticate()
 
@@ -115,20 +106,20 @@ module.exports = async function (config) {
   const Message = setupMessage(MessagesModel, UsersModel)
   const Password = setupPassword(PasswordModel)
   const Users = setupUsers(UsersModel, PlatformsModel, AccessRolModel, PasswordModel, ContactModel)
-  const GamesCollection = setupGamesCollection(GamesCollectionModel)
   const Contact = setupContact(ContactModel)
   const AccessRol = setupAccessRol(AccessRolModel)
   const Platform = setupPlatform(PlatformsModel)
-  const PlatformGames = setupPlatformGames()
-  const Lenguages = setupLenguages(LenguagesModel)
-  const LenguagesGames = setupLenguagesGames(GamesModel, PlatformsModel, PlatformGamesModel)
-  const Genres = setupGenres(GenresModel)
-  const GenresGames = setupGenresGames(GenresGamesModel, GenresGamesModel, GamesModel)
   const Games = setupGames(GamesModel)
-  const UserRating = setupUserRating(UserRatingModel, GamesRatingModel, UsersModel)
+  const Lenguages = setupLenguages(LenguagesModel)
+  const LenguagesGames = setupLenguagesGames(GamesModel, LenguagesModel, LenguagesGamesModel)
+  const PlatformGames = setupPlatformGames(GamesModel,PlatformGames, PlatformGamesModel)
+  const GenresGames = setupGenresGames(GenresGamesModel, GenresModel, GamesModel)
+  const Genres = setupGenres(GenresModel)
+  const GamesCollection = setupGamesCollection(GamesCollectionModel, UsersModel, GamesModel)
   const GamesRating = setupGamesRating(GamesRatingModel)
+  const UserRating = setupUserRating(UserRatingModel, GamesRatingModel, UsersModel)
   const GameRating = setupGameRating(GameRatingModel, GamesRatingModel, GamesModel)
-
+  
   return {
     Message,
     Password,

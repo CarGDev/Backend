@@ -1,20 +1,39 @@
 'use strict'
 
 module.exports = function setupUserRating (userRatingModel, gamesRatingModel, usersModel) {
-  async function create (uuidGamesRating, uuidUsers, userRating) {
+  async function createOrUpdate (uuidGamesRating, uuidUsers, userRating) {
+    const cond = {
+      where: {
+        uuid: userRating.uuid
+      }
+    }
+
     const gamesRating = await gamesRatingModel.findOne({
-      where: { uuidGamesRating }
+      where: { 
+        uuid: uuidGamesRating 
+      }
     })
     const users = await usersModel.findOne({
-      where: { uuidUsers }
+      where: { 
+        uuid: uuidUsers 
+      }
     })
 
-    if (gamesRating && users) {
+    if (gamesRating) {
       Object.assign(userRating, { gamesRatingId: gamesRating.id })
-      Object.assign(userRating, { usersId: users.id })
-      const result = await userRatingModel.create(userRating)
-      return result.toJSON()
     }
+    if (users) {
+      Object.assign(userRating, { usersId: users.id })
+    }
+
+    const existingusers = await userRatingModel.findOne(cond)
+    if (existingusers) {
+      const updated = await userRatingModel.update(userRating, cond)
+      return updated ? userRatingModel.findOne(cond) : existingusers
+    }
+
+    const result = await userRatingModel.create(userRating)
+    return result.toJSON()
   }
 
   function findById (id) {
@@ -46,7 +65,7 @@ module.exports = function setupUserRating (userRatingModel, gamesRatingModel, us
   }
 
   return {
-    create,
+    createOrUpdate,
     findById,
     findByUuid,
     findAll,

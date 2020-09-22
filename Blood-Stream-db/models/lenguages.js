@@ -14,6 +14,10 @@ module.exports = function setupLenguagesModel (config) {
     Lenguages: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    Icon: {
+      type: Sequelize.STRING,
+      allowNull: false
     }
   })
 }

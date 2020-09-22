@@ -7,11 +7,7 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
         uuid: users.uuid
       }
     }
-    const existingusers = await usersModel.findOne(cond)
-    if (existingusers) {
-      const updated = await usersModel.update(users, cond)
-      return updated ? usersModel.findOne(cond) : existingusers
-    }
+    
     const platform = await platformModel.findOne({
       where: {
         uuid: uuidPlat
@@ -34,25 +30,24 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     })
 
     if (platform) {
-      Object.assign(users, {
-        platformId: platform.id
-      })
+      Object.assign(users, { platformId: platform.id })
     }
     if (contact) {
-      Object.assign(users, {
-        contactId: contact.id
-      })
+      Object.assign(users, { contactId: contact.id })
     }
     if (accessRol) {
-      Object.assign(users, {
-        accessRolId: accessRol.id
-      })
+      Object.assign(users, { accessRolId: accessRol.id })
     }
     if (password) {
-      Object.assign(users, {
-        passwordId: password.id
-      })
+      Object.assign(users, { passwordId: password.id })
     }
+
+    const existingusers = await usersModel.findOne(cond)
+    if (existingusers) {
+      const updated = await usersModel.update(users, cond)
+      return updated ? usersModel.findOne(cond) : existingusers
+    }
+    
     const result = await usersModel.create(users)
     return result.toJSON()
   }
