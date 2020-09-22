@@ -3,7 +3,7 @@
 const mysql = require('mysql')
 
 // const config = require('../config')
-const config = require('databasePostgres')
+const config = require('dbConfig')
 
 const dbconf = {
   host: config.host,
