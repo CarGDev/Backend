@@ -2,13 +2,14 @@
 
 const mysql = require('mysql')
 
-const config = require('../config')
+// const config = require('../config')
+const config = require('databasePostgres')
 
 const dbconf = {
-  host: config.mysql.host,
-  user: config.mysql.user,
-  password: config.mysql.password,
-  database: config.mysql.database
+  host: config.host,
+  user: config.username,
+  password: config.password,
+  database: config.database
 }
 
 let connection

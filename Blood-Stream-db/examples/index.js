@@ -4,6 +4,7 @@ const db = require('../index')
 const config = require('configuration')
 const utils = require('../utils/index')
 
+
 async function run () {
   const {
     Message,
