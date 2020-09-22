@@ -17,26 +17,39 @@ module.exports = function setupGenres (genresModel) {
     return result.toJSON()
   }
 
-  function findById (id) {
-    return genresModel.findById(id)
+  async function findById (id) {
+    return await genresModel.findOne({
+      where: {
+        id
+      }
+    })
   }
 
-  function findByUuid (uuid) {
-    return genresModel.findOne({
+  async function findByUuid (uuid) {
+    return await genresModel.findOne({
       where: {
         uuid
       }
     })
   }
 
-  function findAll () {
-    return genresModel.findAll()
+  async function findAll () {
+    return await genresModel.findAll()
+  }
+
+  async function deleteById (id) {
+    return await usersModel.destroy({
+      where: {
+        id
+      }
+    })
   }
 
   return {
     createOrUpdate,
     findById,
     findByUuid,
-    findAll
+    findAll,
+    deleteById
   }
 }
