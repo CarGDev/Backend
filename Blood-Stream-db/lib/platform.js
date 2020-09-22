@@ -10,7 +10,7 @@ module.exports = function setupPlatform (platformModel) {
 
     const existingplatform = await platformModel.findOne(cond)
     if (existingplatform) {
-      const updated = await platformModel.update(cond)
+      const updated = await platformModel.update(platform, cond)
       return updated ? platformModel.findOne(cond) : existingplatform
     }
     const result = await platformModel.create(platform)

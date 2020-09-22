@@ -10,7 +10,7 @@ module.exports = function setupContact (contactModel) {
 
     const existingcontact = await contactModel.findOne(cond)
     if (existingcontact) {
-      const updated = await contactModel.update(cond)
+      const updated = await contactModel.update(contact, cond)
       return updated ? contactModel.findOne(cond) : existingcontact
     }
     const result = await contactModel.create(contact)
