@@ -8,10 +8,10 @@ const utils = require('./utils/index')
 
 const prompt = inquirer.createPromptModule()
 
-async function setup (value) {
-  let answer = false
+async function setup () {
+ /*  let answer = false
   process.argv.forEach((val) => {
-    if (val === '--yes' || val === '-y') {
+    if (val === '--yes' || val === '-y' || !value) {
       answer = true
     }
   })
@@ -27,8 +27,8 @@ async function setup (value) {
     if (!answer.setup) {
       return console.log(chalk.green('Nothing happened :)'))
     }
-  }
-  await db(config(true)).catch(utils.handleFatalError)
+  } */
+  await db(config(false)).catch(utils.handleFatalError)
 
   console.log(`${chalk.bgGreen.black('[Connected]:')} Success!`)
   // process.exit(0)
