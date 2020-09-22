@@ -26,7 +26,9 @@ async function run() {
     GamesRating,
     GameRating
   } = await db(config(false)).catch(utils.handleFatalError)
-
+  
+  console.log('------------Creation Info---------------')
+  
   const contact = await Contact.createOrUpdate({
     uuid: 'xxx',
     email: 'dummy@gmail.com',
@@ -37,7 +39,7 @@ async function run() {
   console.log(contact)
   
   const password = await Password.createOrUpdate({
-    uuid: 'yyy',
+    uuid: 'y1yy',
     JWT_Password: 'asdflkjalsjdflakjsdfoajwoew',
   }).catch(utils.handleFatalError)
   
@@ -45,7 +47,7 @@ async function run() {
   console.log(password)
 
   const accessRol = await AccessRol.createOrUpdate({
-    uuid: 'uuu',
+    uuid: 'uuu2',
     Rol: 'Administrador',
     Level: 50
   }).catch(utils.handleFatalError)
@@ -54,7 +56,7 @@ async function run() {
   console.log(accessRol)
 
   const platform = await Platform.createOrUpdate({
-    uuid: 'yyy',
+    uuid: 'yy21',
     Platform: 'Xbox'
   }).catch(utils.handleFatalError)
   
@@ -62,8 +64,8 @@ async function run() {
   console.log(platform)
 
   const users = await Users.createOrUpdate({
-    uuid: 'yyx',
-    Nickname: 'test',
+    uuid: 'y1retx',
+    Nickname: 'test2',
     Country: 'Mexico',
     Postal_Code: 20208,
     Birthday: '1989-09-15 07:55:10.587458',
@@ -74,6 +76,24 @@ async function run() {
   console.log('------------Users---------------')
   console.log(users)
   
+  console.log('------------Find Info---------------')
+  console.log('------------User Info By ID---------------')
+  const userById = await Users.findById(users.id).catch(utils.handleFatalError)
+  console.log(userById)
+  console.log('------------User Info By Uuid---------------')
+  const userByUuid = await Users.findByUuid(users.uuid).catch(utils.handleFatalError)
+  console.log(userByUuid)
+  console.log('------------User All---------------')
+  const userAll = await Users.findAll().catch(utils.handleFatalError)
+  console.log(userAll)
+  console.log('------------Delete---------------')
+  const userDelete = await Users.deleteById(2).catch(utils.handleFatalError)
+  console.log(userDelete)
+  console.log('------------User All---------------')
+  const userAll2 = await Users.findAll().catch(utils.handleFatalError)
+  console.log(userAll2)
+  console.log('------------User Info By ID---------------')
+
 }
 
 run()
