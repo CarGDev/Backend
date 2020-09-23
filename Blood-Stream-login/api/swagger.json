@@ -38,7 +38,7 @@
             }
           },
           "404": {
-            "description": "Not Foung"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Error"
@@ -174,10 +174,6 @@
           "type": "boolean",
           "example": true
         },
-        "createdAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
-        },
         "platformId": {
           "$ref": "#/definitions/Platform"
         },
@@ -210,14 +206,6 @@
         "phone": {
           "type": "string",
           "example": "8392389237"
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
         }
       }
     },
@@ -239,14 +227,6 @@
         "Level": {
           "type": "integer",
           "example": 50
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
         }
       }
     },
@@ -264,14 +244,6 @@
         "JWT_Password": {
           "type": "string",
           "example": "encrypted"
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
         }
       }
     },
@@ -289,14 +261,6 @@
         "Platform": {
           "type": "string",
           "example": "Xbox"
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "1989-09-15 07:55:10.587458"
         }
       }
     },
