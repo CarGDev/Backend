@@ -1,11 +1,9 @@
 'use strict'
 
 const { nanoid } = require('nanoid')
-const auth = require('../auth')
+const auth = require('../../../auth/index')
 const utils = require('../../../../Blood-Stream-db/utils/index')
 const config = require('../../../../config/config')
-const TABLA = 'users'
-const ID = 'UserId'
 let users
 
 module.exports = function (injectedStore) {
@@ -18,8 +16,9 @@ module.exports = function (injectedStore) {
     return users
   }
   
-  async function get (id) {
+  async function get (nickname) {
     let { Users } = await store(config(false)).catch(utils.handleFatalError)
+    const id = Users.findByNickname(nickname).catch(utils.handleFatalError)
     return Users.findById(id)
   }
 
@@ -45,8 +44,10 @@ module.exports = function (injectedStore) {
 
     return store.upsert(TABLA, user)
   }
-  async function deleteTable (id) {
-
+  async function deleteTable (nickname) {
+    let { Users } = await store(config(false)).catch(utils.handleFatalError)
+    const id = Users.findByNickname(nickname).catch(utils.handleFatalError)
+    return Users.deleteTable(id).catch(utils.handleFatalError)
   }
 
   return {

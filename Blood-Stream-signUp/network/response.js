@@ -1,3 +1,5 @@
+'use strict'
+
 exports.success = function (req, res, message, status) {
   const statusCode = status || 200
   const statusMessage = message || ''

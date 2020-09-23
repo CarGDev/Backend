@@ -1,3 +1,5 @@
+'use strict'
+
 const db = {
   user: [
     { id: '1', name: 'Steven' }

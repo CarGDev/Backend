@@ -1,19 +1,20 @@
 'use strict'
 
 const bcrypt = require('bcrypt')
+const utils = require('../../../../Blood-Stream-db/utils')
 const auth = require('../../../auth/index')
 const TABLA = 'password'
 
 module.exports = function (injectedStore) {
   let store = injectedStore
-  if (!store) {
-    store = require('../../../store/dummy')
-  }
 
   async function login (username, password) {
-    const data = await store.query(TABLA, { username: username })
+    const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
+    
+    const users = Users.findByNickname(username).catch(utils.handleFatalError)
+    const pass = Password.findByid(users.id).catch(utils.handleFatalError)
 
-    return bcrypt.compare(password, data.password)
+    return bcrypt.compare(password, pass.JWT_Password)
       .then(areEquals => {
         if (areEquals === true) {
           // token

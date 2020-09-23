@@ -15,7 +15,8 @@ const swaggerDoc = require('./api/swagger.json')
 const auth = require('./api/components/auth/network')
 
 // ROUTER
-app.use('/api/user', user)
+app.use('/user', user)
+app.use('/user-log', auth)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
 app.use(errors)
