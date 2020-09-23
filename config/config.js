@@ -12,12 +12,12 @@ module.exports = function config (configExtra) {
       password: process.env.DB_PASS || 'password',
       host: process.env.DB_HOST || 'localhost',
       dialect: 'postgres',
-      /* dialectOptions: {
+      dialectOptions: {
         ssl: {
           require: true,
           rejectUnauthorized: false
         }
-      }, */
+      },
       loggin: s => debug(s),
       setup: true
     }
@@ -28,12 +28,12 @@ module.exports = function config (configExtra) {
       password: process.env.DB_PASS || 'password',
       host: process.env.DB_HOST || 'localhost',
       dialect: 'postgres',
-      /* dialectOptions: {
+      dialectOptions: {
         ssl: {
           require: true,
           rejectUnauthorized: false
         }
-      }, */
+      },
       logging: s => debug(s)
     }
   }
