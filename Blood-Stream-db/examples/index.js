@@ -1,8 +1,9 @@
 'use strict'
 
 const db = require('../index')
-const config = require('configuration')
+const config = require('../../config/config')
 const utils = require('../utils/index')
+
 
 async function run () {
   const {
@@ -81,6 +82,8 @@ async function run () {
 
   console.log('------------Message---------------')
   console.log(message)
+  const usersList = await Users.findAll().catch(utils.handleFatalError)
+  console.log(usersList)
 }
 
 run()

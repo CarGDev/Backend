@@ -1,8 +1,6 @@
 'use strict'
 
-// const store = require('../../../store/mysql')
+const store = require('../../../../Blood-Stream-db/index')
 const ctrl = require('./controller')
-// const store = require('../../../store/mysql')
-const store = require('../../../store/dummy')
 
 module.exports = ctrl(store)
