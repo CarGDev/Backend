@@ -60,6 +60,14 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     })
   }
 
+  async function findByNickname (nickname) {
+    return await usersModel.findOne({
+      where: {
+        Nickname: nickname
+      }
+    })
+  }
+
   async function findByUuid (uuid) {
     return await usersModel.findOne({
       where: {
@@ -84,6 +92,7 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     createOrUpdate,
     findById,
     findByUuid,
+    findByNickname,
     findAll,
     deleteById
   }

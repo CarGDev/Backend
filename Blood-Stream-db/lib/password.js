@@ -25,6 +25,14 @@ module.exports = function setupPassword (passwordModel) {
     })
   }
 
+  function findByJwt (jwtPassword) {
+    return passwordModel.findOne({
+      where: {
+        JWT_Password: jwtPassword
+      }
+    })
+  }
+
   function findByUuid (uuid) {
     return passwordModel.findOne({
       where: {
@@ -49,6 +57,7 @@ module.exports = function setupPassword (passwordModel) {
     createOrUpdate,
     findById,
     findByUuid,
+    findByJwt,
     findAll,
     deleteById
   }
