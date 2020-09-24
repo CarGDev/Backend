@@ -92,8 +92,13 @@ module.exports = function (injectedStore) {
   }
 
   async function deleteTable (nickname) {
-    let { Users } = await store(config(false)).catch(utils.handleFatalError)
-    return Users.deleteById(nickname).catch(utils.handleFatalError)
+    let { Users, Contact, AccessRol, Platform, Password } = await store(config(false)).catch(utils.handleFatalError)
+    const user = await Users.deleteById(nickname).catch(utils.handleFatalError)
+    await Contact.deleteById(user.contactId).catch(utils.handleFatalError)
+    await AccessRol.deleteById(user.accessRolId).catch(utils.handleFatalError)
+    await Platform.deleteById(user.platformId).catch(utils.handleFatalError)
+    await Password.deleteById(user.Password).catch(utils.handleFatalError)
+    return `The user ${nickname} was erased`
   }
 
   return {
