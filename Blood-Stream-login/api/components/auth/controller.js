@@ -1,5 +1,6 @@
 'use strict'
 
+const { nanoid } = require('nanoid')
 const bcrypt = require('bcrypt')
 const utils = require('../../../../Blood-Stream-db/utils')
 const auth = require('../../../auth/index')
@@ -12,8 +13,8 @@ module.exports = function (injectedStore) {
     const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
     const users = await Users.findByNickname(username).catch(utils.handleFatalError)
     if (users) {
-      console.log(users.id)
-      let pass = await Password.findById(users.id).catch(utils.handleFatalError)
+      console.log(users.passwordId)
+      let pass = await Password.findById(users.passwordId).catch(utils.handleFatalError)
       return bcrypt.compare(password, pass.JWT_Password)
         .then(areEquals => {
           if (areEquals === true) {
@@ -27,15 +28,36 @@ module.exports = function (injectedStore) {
     return 'The user does not exits'
   }
 
+  async function retrievePass (username, password) {
+    const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
+    const users = await Users.findByNickname(username).catch(utils.handleFatalError)
+
+    if (!users) {
+      return `The user ${username} does not exits`
+    }
+    if (users.passwordId) {
+      await Password.deleteById(users.passwordId).catch(utils.handleFatalError)
+    }
+    const uuidPassword = nanoid()
+
+    const authData = { 
+      uuid: uuidPassword,
+      password: password
+    }
+    await upsert(authData)
+    await Users.createOrUpdate(users, null, null, null, uuidPassword)
+
+    return `The password for the user ${username} was changed successfull`
+  }
+
   async function upsert (data) {
     const authData = {
       uuid: data.uuid
     }
 
     if (data.password) {
-      authData.JWT_Password = await bcrypt.hash(data.JWT_Password, 5)
+      authData.JWT_Password = await bcrypt.hash(data.password, 5)
     }
-
     let { Password } = await store(config(false)).catch(utils.handleFatalError)
 
     await Password.createOrUpdate(authData)
@@ -43,6 +65,7 @@ module.exports = function (injectedStore) {
 
   return {
     upsert,
-    login
+    login,
+    retrievePass
   }
 }
