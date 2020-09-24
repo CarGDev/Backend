@@ -25,7 +25,7 @@ async function run () {
     // GameRating
   } = await db(config(false)).catch(utils.handleFatalError)
 
-  console.log('------------Creation Info---------------')
+ /*  console.log('------------Creation Info---------------')
 
   const contact = await Contact.createOrUpdate({
     uuid: 'xxx',
@@ -82,6 +82,9 @@ async function run () {
   console.log('------------Message---------------')
   console.log(message)
   const usersList = await Users.findAll().catch(utils.handleFatalError)
+ */
+  const pass = await Password.findAll().catch(utils.handleFatalError)
+  console.log(pass)
 }
 
 run()

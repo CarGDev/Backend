@@ -98,12 +98,25 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     })
   }
 
+  async function userExists (users) {
+    const userExist = await usersModel.findOne({
+      where: {
+        Nickname: users
+      }
+    })
+
+    if (userExist) {
+      return true
+    }
+  }
+
   return {
     createOrUpdate,
     findById,
     findByUuid,
     findByNickname,
     findAll,
-    deleteById
+    deleteById,
+    userExists
   }
 }

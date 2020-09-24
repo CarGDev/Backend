@@ -1,7 +1,7 @@
 'use strict'
 
 const { nanoid } = require('nanoid')
-const controller = require('../auth/index')
+const bcrypt = require('bcrypt')
 const utils = require('../../../../Blood-Stream-db/utils/index')
 const config = require('../../../../config/config')
 let users
@@ -22,9 +22,16 @@ module.exports = function (injectedStore) {
   }
 
   async function upsert (body) {
-    console.log(body)
     let { Users, Contact, AccessRol, Platform, Password } = await store(config(false)).catch(utils.handleFatalError)
     
+    const userExist = await Users.userExists(body.nickname).catch(utils.handleFatalError)
+    const contactExist = await Contact.findByEmail(body.email).catch(utils.handleFatalError)
+    console.log(userExist)
+    console.log(contactExist)
+    if (userExist || contactExist) {
+      return 'User or Email Exist'
+    }
+
     const uuidPlatform = nanoid()
     const uuidContact = nanoid()
     const uuidUser = nanoid()
@@ -42,7 +49,6 @@ module.exports = function (injectedStore) {
     } else {
       user.uuid = uuidUser
     }
-    console.log(user)
     const platform = {
       uuid: uuidPlatform,
       Platform: body.platform
@@ -69,14 +75,17 @@ module.exports = function (injectedStore) {
       JWT_Password: body.password
     }
 
-    await Password.createOrUpdate(pass).catch(utils.handleFatalError)
-   /*  if (body.password) {
-      
-      await controller.upsert(pass)
-    } */
+    const authData = { uuid: uuidPassword }
+    if (body.password) {
+      authData.JWT_Password = await bcrypt.hash(body.password, 5)
+    }
+
+    console.log(authData)
+
+    await Password.createOrUpdate(authData).catch(utils.handleFatalError)
     
 
-    const result = await Users.createOrUpdate(user, uuidPlatform, uuidRol, uuidContact, uuidPassword)
+    const result = await Users.createOrUpdate(user, uuidPlatform, uuidRol, uuidContact, uuidPassword, body.email)
 
     return result
     
