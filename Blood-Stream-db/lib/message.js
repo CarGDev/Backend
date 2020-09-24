@@ -7,7 +7,7 @@ module.exports = function setupMessages (messagesModel, usersModel) {
         uuid: messages.uuid
       }
     }
-    
+
     const existingusers = await usersModel.findOne({
       where: {
         uuid

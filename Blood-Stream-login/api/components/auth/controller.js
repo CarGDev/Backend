@@ -7,14 +7,14 @@ const auth = require('../../../auth/index')
 const config = require('../../../../config/config')
 
 module.exports = function (injectedStore) {
-  let store = injectedStore
+  const store = injectedStore
 
   async function login (username, password) {
     const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
     const users = await Users.findByNickname(username).catch(utils.handleFatalError)
     if (users) {
       console.log(users.passwordId)
-      let pass = await Password.findById(users.passwordId).catch(utils.handleFatalError)
+      const pass = await Password.findById(users.passwordId).catch(utils.handleFatalError)
       return bcrypt.compare(password, pass.JWT_Password)
         .then(areEquals => {
           if (areEquals === true) {
@@ -40,7 +40,7 @@ module.exports = function (injectedStore) {
     }
     const uuidPassword = nanoid()
 
-    const authData = { 
+    const authData = {
       uuid: uuidPassword,
       password: password
     }
@@ -58,7 +58,7 @@ module.exports = function (injectedStore) {
     if (data.password) {
       authData.JWT_Password = await bcrypt.hash(data.password, 5)
     }
-    let { Password } = await store(config(false)).catch(utils.handleFatalError)
+    const { Password } = await store(config(false)).catch(utils.handleFatalError)
 
     await Password.createOrUpdate(authData)
   }
