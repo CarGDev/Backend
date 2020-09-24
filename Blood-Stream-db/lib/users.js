@@ -8,6 +8,16 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
       }
     }
 
+    const userExist = await usersModel.findOne({
+      where: {
+        Nickname: users.Nickname
+      }
+    })
+
+    if (userExist) {
+      return "User Exist"
+    }
+
     const platform = await platformModel.findOne({
       where: {
         uuid: uuidPlat
@@ -60,10 +70,10 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     })
   }
 
-  async function findByNickname (nickname) {
+  async function findByNickname (Nickname) {
     return await usersModel.findOne({
       where: {
-        Nickname: nickname
+        Nickname
       }
     })
   }
@@ -80,10 +90,10 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     return await usersModel.findAll()
   }
 
-  async function deleteById (id) {
+  async function deleteById (Nickname) {
     return await usersModel.destroy({
       where: {
-        id
+        Nickname
       }
     })
   }

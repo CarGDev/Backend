@@ -7,23 +7,22 @@ module.exports = function setupMessages (messagesModel, usersModel) {
         uuid: messages.uuid
       }
     }
-
-    const existingmessages = await messagesModel.findOne(cond)
-    if (existingmessages) {
-      const updated = await messagesModel.update(cond)
-      return updated ? messagesModel.findOne(cond) : existingmessages
-    }
+    
     const existingusers = await usersModel.findOne({
       where: {
         uuid
       }
     })
 
-    if (existingusers) {
-      Object.assign(messages, { userId: existingusers.id })
-      const result = await messagesModel.create(messages)
-      return result.toJSON()
+    const existingmessages = await messagesModel.findOne(cond)
+    if (existingmessages) {
+      const updated = await messagesModel.update(messages, cond)
+      return updated ? messagesModel.findOne(cond) : existingmessages
     }
+
+    Object.assign(messages, { userId: existingusers.id })
+    const result = await messagesModel.create(messages)
+    return result.toJSON()
   }
 
   function findById (id) {

@@ -62,8 +62,8 @@ async function run () {
   console.log(platform)
 
   const users = await Users.createOrUpdate({
-    uuid: 'y1retx',
-    Nickname: 'test2',
+    uuid: 'y1ewqe',
+    Nickname: 'test4',
     Country: 'Mexico',
     Postal_Code: 20208,
     Birthday: '1989-09-15 07:55:10.587458',
@@ -73,17 +73,15 @@ async function run () {
 
   console.log('------------Users---------------')
   console.log(users)
-
+  
   const message = await Message.createOrUpdate({
-    uuid: 'yyywe',
+    uuid: 'yye',
     Message: 'lorem ipsum ajksdflkashdfljkahq qwouiflafkf mi ra asdfanflqwk',
     Post_Like: false
   }, users.uuid)
-
   console.log('------------Message---------------')
   console.log(message)
   const usersList = await Users.findAll().catch(utils.handleFatalError)
-  console.log(usersList)
 }
 
 run()
