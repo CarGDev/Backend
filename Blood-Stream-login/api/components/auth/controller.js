@@ -3,7 +3,6 @@
 const bcrypt = require('bcrypt')
 const utils = require('../../../../Blood-Stream-db/utils')
 const auth = require('../../../auth/index')
-const TABLA = 'password'
 
 module.exports = function (injectedStore) {
   let store = injectedStore
@@ -27,18 +26,16 @@ module.exports = function (injectedStore) {
 
   async function upsert (data) {
     const authData = {
-      id: data.id
-    }
-
-    if (data.username) {
-      authData.username = data.username
+      uuid: data.uuid
     }
 
     if (data.password) {
-      authData.password = await bcrypt.hash(data.password, 5)
+      authData.JWT_Password = await bcrypt.hash(data.JWT_Password, 5)
     }
 
-    return store.upsert(TABLA, authData)
+    let { Password } = await store(config(false)).catch(utils.handleFatalError)
+
+    await Password.createOrUpdate(authData)
   }
 
   return {

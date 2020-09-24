@@ -38,7 +38,7 @@ function upsert (req, res, next) {
 }
 
 function deleteTable (req, res, next) {
-  Controlles.deleteTable(req.params.nickname)
+  Controller.deleteTable(req.params.nickname)
     .then((user) => {
       response.success(req, res, user, 200)
     })
