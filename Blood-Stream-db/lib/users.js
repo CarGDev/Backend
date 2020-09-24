@@ -90,10 +90,10 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
     return await usersModel.findAll()
   }
 
-  async function deleteById (Nickname) {
+  async function deleteById (id) {
     return await usersModel.destroy({
       where: {
-        Nickname
+        id
       }
     })
   }
