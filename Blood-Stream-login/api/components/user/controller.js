@@ -26,8 +26,6 @@ module.exports = function (injectedStore) {
     
     const userExist = await Users.userExists(body.nickname).catch(utils.handleFatalError)
     const contactExist = await Contact.findByEmail(body.email).catch(utils.handleFatalError)
-    console.log(userExist)
-    console.log(contactExist)
     if (userExist || contactExist) {
       return 'User or Email Exist'
     }

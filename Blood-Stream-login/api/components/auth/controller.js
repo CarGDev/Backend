@@ -11,6 +11,7 @@ module.exports = function (injectedStore) {
   async function login (username, password) {
     const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
     const users = await Users.findByNickname(username).catch(utils.handleFatalError)
+    console.log(users.id)
     let pass = await Password.findById(users.id).catch(utils.handleFatalError)
     return bcrypt.compare(password, pass.JWT_Password)
       .then(areEquals => {
