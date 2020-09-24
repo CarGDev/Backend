@@ -4,6 +4,7 @@ const { nanoid } = require('nanoid')
 const bcrypt = require('bcrypt')
 const utils = require('../../../../Blood-Stream-db/utils/index')
 const config = require('../../../../config/config')
+const { handleFatalError } = require('../../../../Blood-Stream-db/utils/index')
 let users
 
 module.exports = function (injectedStore) {
@@ -91,12 +92,27 @@ module.exports = function (injectedStore) {
 
   async function deleteTable (nickname) {
     let { Users, Contact, AccessRol, Platform, Password } = await store(config(false)).catch(utils.handleFatalError)
-    const user = await Users.deleteById(nickname).catch(utils.handleFatalError)
-    await Contact.deleteById(user.contactId).catch(utils.handleFatalError)
-    await AccessRol.deleteById(user.accessRolId).catch(utils.handleFatalError)
-    await Platform.deleteById(user.platformId).catch(utils.handleFatalError)
-    await Password.deleteById(user.Password).catch(utils.handleFatalError)
-    return `The user ${nickname} was erased`
+    const user = await Users.findByNickname(nickname).catch(utils.handleFatalError)
+    if (user) {
+      if (user.contactId) {
+        await Contact.deleteById(user.contactId).catch(utils.handleFatalError)
+      }
+      if (user.accessRolId) {
+        await AccessRol.deleteById(user.accessRolId).catch(utils.handleFatalError)
+      }
+      if (user.platformId) {
+        await Platform.deleteById(user.platformId).catch(utils.handleFatalError)
+      }
+
+      if (user.passwordId) {
+        await Password.deleteById(user.passwordId).catch(utils.handleFatalError)
+      }
+      if (user.id) {
+        await Users.deleteById(user.id).catch(utils.handleFatalError) 
+      }
+      return `The user ${nickname} was erased`
+    }
+    return `The user ${nickname} was not found`
   }
 
   return {
