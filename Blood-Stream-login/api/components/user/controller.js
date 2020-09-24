@@ -4,8 +4,10 @@ const { nanoid } = require('nanoid')
 const bcrypt = require('bcrypt')
 const utils = require('../../../../Blood-Stream-db/utils/index')
 const config = require('../../../../config/config')
-const { handleFatalError } = require('../../../../Blood-Stream-db/utils/index')
+const controller = require('../auth/index')
+const auth = require('../../../auth')
 let users
+
 
 module.exports = function (injectedStore) {
   const store = injectedStore
@@ -74,17 +76,13 @@ module.exports = function (injectedStore) {
       JWT_Password: body.password
     }
 
-    const authData = { uuid: uuidPassword }
-    if (body.password) {
-      authData.JWT_Password = await bcrypt.hash(body.password, 5)
+    const authData = { 
+      uuid: uuidPassword,
+      password: body.password
     }
-
-    console.log(authData)
-
-    await Password.createOrUpdate(authData).catch(utils.handleFatalError)
+    await controller.upsert(authData)
     
-
-    const result = await Users.createOrUpdate(user, uuidPlatform, uuidRol, uuidContact, uuidPassword, body.email)
+    const result = await Users.createOrUpdate(user, uuidPlatform, uuidRol, uuidContact, uuidPassword)
 
     return result
     

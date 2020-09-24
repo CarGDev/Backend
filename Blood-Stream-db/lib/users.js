@@ -8,16 +8,6 @@ module.exports = function setupUsers (usersModel, platformModel, accessRolModel,
       }
     }
 
-    const userExist = await usersModel.findOne({
-      where: {
-        Nickname: users.Nickname
-      }
-    })
-
-    if (userExist) {
-      return "User Exist"
-    }
-
     const platform = await platformModel.findOne({
       where: {
         uuid: uuidPlat
