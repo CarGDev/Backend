@@ -4,7 +4,6 @@ const express = require('express')
 
 const response = require('../../../network/response')
 const controller = require('./index')
-
 const router = express.Router()
 
 router.post('/login', function (req, res, next) {
