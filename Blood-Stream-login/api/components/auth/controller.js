@@ -11,17 +11,20 @@ module.exports = function (injectedStore) {
   async function login (username, password) {
     const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
     const users = await Users.findByNickname(username).catch(utils.handleFatalError)
-    console.log(users.id)
-    let pass = await Password.findById(users.id).catch(utils.handleFatalError)
-    return bcrypt.compare(password, pass.JWT_Password)
-      .then(areEquals => {
-        if (areEquals === true) {
-          // token
-          return auth.sign(JSON.parse(JSON.stringify(pass)))
-        } else {
-          throw new Error('Invalid information')
-        }
-      })
+    if (users) {
+      console.log(users.id)
+      let pass = await Password.findById(users.id).catch(utils.handleFatalError)
+      return bcrypt.compare(password, pass.JWT_Password)
+        .then(areEquals => {
+          if (areEquals === true) {
+            // token
+            return auth.sign(JSON.parse(JSON.stringify(pass)))
+          } else {
+            throw new Error('Invalid information')
+          }
+        })
+    }
+    return 'The user does not exits'
   }
 
   async function upsert (data) {
