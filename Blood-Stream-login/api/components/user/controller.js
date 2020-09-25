@@ -24,7 +24,7 @@ module.exports = function (injectedStore) {
   }
 
   async function upsert (body) {
-    const { Users, Contact, AccessRol, Platform, Password } = await store(config(false)).catch(utils.handleFatalError)
+    const { Users, Contact, AccessRol, Platform } = await store(config(false)).catch(utils.handleFatalError)
 
     const userExist = await Users.userExists(body.nickname).catch(utils.handleFatalError)
     const contactExist = await Contact.findByEmail(body.email).catch(utils.handleFatalError)

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "setup": "DEBUG=Blood-Stream:* && node Blood-Stream-db/setup.js",
     "dev": "nodemon index.js",
     "lint": "standard",
     "lint-fix": "standard --fix",
