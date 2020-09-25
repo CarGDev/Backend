@@ -45,6 +45,8 @@ The file config recieve 1 parameter, if this parameter is **true**, the database
 
 ![configFalse.png](./Readme%20images/configTrue.png)
 
+![InstallingDataBases.gif](./Readme%20images/Installing%20databases.gif)
+
 if the parameter is **false** the database just create the communication between controller and database
 
 ![configFalse.png](./Readme%20images/configFalse.png)
@@ -77,6 +79,8 @@ module.exports = function config (configExtra) {
   return config
 }
 ```
+
+
 ---
 ## DataBase
 
