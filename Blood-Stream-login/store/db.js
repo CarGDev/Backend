@@ -1,9 +1,11 @@
+'use strict'
+
 const utils = require('../../Blood-Stream-db/utils/index')
 const config = require('../../config/config')
 const db = require('../../Blood-Stream-db/setup')
 
 module.exports = async function () {
-  const { 
+  const {
     Message,
     Password,
     Users,
@@ -20,9 +22,9 @@ module.exports = async function () {
     UserRating,
     GamesRating,
     GameRating
-   } = await db(config(false)).catch(utils.handleFatalError)
-   
-   return {
+  } = await db(config(false)).catch(utils.handleFatalError)
+
+  return {
     Message,
     Password,
     Users,
@@ -39,6 +41,5 @@ module.exports = async function () {
     UserRating,
     GamesRating,
     GameRating
-   }
+  }
 }
- 

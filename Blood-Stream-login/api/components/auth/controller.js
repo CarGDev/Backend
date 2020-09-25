@@ -1,47 +1,71 @@
 'use strict'
 
+const { nanoid } = require('nanoid')
 const bcrypt = require('bcrypt')
+const utils = require('../../../../Blood-Stream-db/utils')
 const auth = require('../../../auth/index')
-const TABLA = 'password'
+const config = require('../../../../config/config')
 
 module.exports = function (injectedStore) {
-  let store = injectedStore
-  if (!store) {
-    store = require('../../../store/dummy')
-  }
+  const store = injectedStore
 
   async function login (username, password) {
-    const data = await store.query(TABLA, { username: username })
+    const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
+    const users = await Users.findByNickname(username).catch(utils.handleFatalError)
+    if (users) {
+      console.log(users.passwordId)
+      const pass = await Password.findById(users.passwordId).catch(utils.handleFatalError)
+      return bcrypt.compare(password, pass.JWT_Password)
+        .then(areEquals => {
+          if (areEquals === true) {
+            // token
+            return auth.sign(JSON.parse(JSON.stringify(pass)))
+          } else {
+            throw new Error('Invalid information')
+          }
+        })
+    }
+    return 'The user does not exits'
+  }
 
-    return bcrypt.compare(password, data.password)
-      .then(areEquals => {
-        if (areEquals === true) {
-          // token
-          return auth.sign(JSON.parse(JSON.stringify(data)))
-        } else {
-          throw new Error('Invalid information')
-        }
-      })
+  async function retrievePass (username, password) {
+    const { Password, Users } = await store(config(false)).catch(utils.handleFatalError)
+    const users = await Users.findByNickname(username).catch(utils.handleFatalError)
+
+    if (!users) {
+      return `The user ${username} does not exits`
+    }
+    if (users.passwordId) {
+      await Password.deleteById(users.passwordId).catch(utils.handleFatalError)
+    }
+    const uuidPassword = nanoid()
+
+    const authData = {
+      uuid: uuidPassword,
+      password: password
+    }
+    await upsert(authData)
+    await Users.createOrUpdate(users, null, null, null, uuidPassword)
+
+    return `The password for the user ${username} was changed successfull`
   }
 
   async function upsert (data) {
     const authData = {
-      id: data.id
-    }
-
-    if (data.username) {
-      authData.username = data.username
+      uuid: data.uuid
     }
 
     if (data.password) {
-      authData.password = await bcrypt.hash(data.password, 5)
+      authData.JWT_Password = await bcrypt.hash(data.password, 5)
     }
+    const { Password } = await store(config(false)).catch(utils.handleFatalError)
 
-    return store.upsert(TABLA, authData)
+    await Password.createOrUpdate(authData)
   }
 
   return {
     upsert,
-    login
+    login,
+    retrievePass
   }
 }

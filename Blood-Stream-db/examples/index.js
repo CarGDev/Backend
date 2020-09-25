@@ -4,7 +4,6 @@ const db = require('../index')
 const config = require('../../config/config')
 const utils = require('../utils/index')
 
-
 async function run () {
   const {
     Message,
@@ -25,7 +24,7 @@ async function run () {
     // GameRating
   } = await db(config(false)).catch(utils.handleFatalError)
 
-  console.log('------------Creation Info---------------')
+  /*  console.log('------------Creation Info---------------')
 
   const contact = await Contact.createOrUpdate({
     uuid: 'xxx',
@@ -62,8 +61,8 @@ async function run () {
   console.log(platform)
 
   const users = await Users.createOrUpdate({
-    uuid: 'y1retx',
-    Nickname: 'test2',
+    uuid: 'y1ewqe',
+    Nickname: 'test4',
     Country: 'Mexico',
     Postal_Code: 20208,
     Birthday: '1989-09-15 07:55:10.587458',
@@ -75,15 +74,16 @@ async function run () {
   console.log(users)
 
   const message = await Message.createOrUpdate({
-    uuid: 'yyywe',
+    uuid: 'yye',
     Message: 'lorem ipsum ajksdflkashdfljkahq qwouiflafkf mi ra asdfanflqwk',
     Post_Like: false
   }, users.uuid)
-
   console.log('------------Message---------------')
   console.log(message)
   const usersList = await Users.findAll().catch(utils.handleFatalError)
-  console.log(usersList)
+ */
+  const pass = await Password.findAll().catch(utils.handleFatalError)
+  console.log(pass)
 }
 
 run()

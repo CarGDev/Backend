@@ -9,11 +9,9 @@ const router = express.Router()
 
 // Routes
 router.get('/', list)
-router.get('/:id', get)
-router.get('/:id/login', secure('login'), followers)
+router.get('/:nickname', get)
 router.post('/', upsert)
-router.put('/', secure('update'), upsert)
-
+router.delete('/:nickname', deleteTable)
 // Internal Functions
 function list (req, res, next) {
   Controller.list()
@@ -24,7 +22,7 @@ function list (req, res, next) {
 }
 
 function get (req, res, next) {
-  Controller.get(req.params.id)
+  Controller.get(req.params.nickname)
     .then((user) => {
       response.success(req, res, user, 200)
     })
@@ -39,18 +37,10 @@ function upsert (req, res, next) {
     .catch(next)
 }
 
-function follow (req, res, next) {
-  Controller.follow(req.user.id, req.params.id)
-    .then((data) => {
-      response.success(req, res, data, 201)
-    })
-    .catch(next)
-}
-
-function followers (req, res, next) {
-  Controller.followers(req.user.id)
-    .then((data) => {
-      response.success(req, res, data, 200)
+function deleteTable (req, res, next) {
+  Controller.deleteTable(req.params.nickname)
+    .then((user) => {
+      response.success(req, res, user, 200)
     })
     .catch(next)
 }
