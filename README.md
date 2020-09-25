@@ -349,3 +349,13 @@ http://dry-mesa-48732.herokuapp.com/user/{USER}
 ```
 
 ---
+---
+---
+---
+### Twitter
+
+![tweet.jpg](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FCarGDev)
+
+### Github
+
+![Github.jpg](https://img.shields.io/github/followers/CarGDev?style=social)
