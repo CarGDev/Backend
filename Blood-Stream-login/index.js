@@ -24,6 +24,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 app.use(errors)
 
 app.listen(config.api.port, () => {
+  console.log(config)
   console.log(process.env.NODE_ENV)
   
   console.log(conf(false).database)
