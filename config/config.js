@@ -7,11 +7,11 @@ module.exports = function config (configExtra) {
 
   if (configExtra) {
     config = {
-      database: process.env.DB_NAME || 'd77u0bnsf1n1qr',
-      username: process.env.DB_USER || 'wyrtcsghhfjztx',
-      password: process.env.DB_PASS || '16553f8747bc39e8d06c0fbf309b34af0d2f15c1c71aac2fc28536fdc60f172e',
-      host: process.env.DB_HOST || 'ec2-50-16-221-180.compute-1.amazonaws.com',
-      dialect: 'postgres',
+      database: process.env.DB_NAME || 'bloodstreamdb',
+      username: process.env.DB_USER || 'postgres',
+      password: process.env.DB_PASS || 'password',
+      hostname: process.env.DB_HOST || 'localhost',
+	    dialect: 'postgres',
       dialectOptions: {
         ssl: {
           require: true,
@@ -23,11 +23,11 @@ module.exports = function config (configExtra) {
     }
   } else {
     config = {
-      database: process.env.DB_NAME || 'd77u0bnsf1n1qr',
-      username: process.env.DB_USER || 'wyrtcsghhfjztx',
-      password: process.env.DB_PASS || '16553f8747bc39e8d06c0fbf309b34af0d2f15c1c71aac2fc28536fdc60f172e',
-      host: process.env.DB_HOST || 'ec2-50-16-221-180.compute-1.amazonaws.com',
-      dialect: 'postgres',
+      database: process.env.DB_NAME || 'bloodstreamdb',
+      username: process.env.DB_USER || 'postgres',
+      password: process.env.DB_PASS || 'password',
+      hostname: process.env.DB_HOST || 'localhost',
+	    dialect: 'postgres',
       dialectOptions: {
         ssl: {
           require: true,
