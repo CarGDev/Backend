@@ -24,5 +24,9 @@ app.use(errors)
 
 app.listen(config.api.port, () => {
   console.log(process.env.PORT)
+  console.log(process.env.DB_NAME)
+  console.log(process.env.DB_USER)
+  console.log(process.env.DB_PASS)
+  console.log(process.env.DB_HOST)
   console.log(`Api escuchando en el puerto ${config.api.port}`)
 })
