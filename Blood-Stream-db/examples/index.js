@@ -31,7 +31,7 @@ const user6 = require('../../../CSVtoJSON/JS-Users/My Saved Schema (4)')
 const user7 = require('../../../CSVtoJSON/JS-Users/My Saved Schema (5)')
 
 async function run () {
-  const {
+  /* const {
     // Message,
     // Password,
     Users,
@@ -410,7 +410,10 @@ async function run () {
     }).catch(utils.handleFatalError)
     console.log(game)
     console.log("-------------------------------------")
-  } 
+  }  */
+
+  let game
+  let el
   console.log('Comienza User2')
   for (const element in user2) {
     el = user2[element]
