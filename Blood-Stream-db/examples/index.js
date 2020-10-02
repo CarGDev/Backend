@@ -31,7 +31,7 @@ const user6 = require('../../../CSVtoJSON/JS-Users/My Saved Schema (4)')
 const user7 = require('../../../CSVtoJSON/JS-Users/My Saved Schema (5)')
 
 async function run () {
-  /* const {
+  const {
     // Message,
     // Password,
     Users,
@@ -44,15 +44,15 @@ async function run () {
     // LenguagesGames,
     // Genres,
     // GenresGames,
-    //Games,
+    Games,
     // UserRating,
     // GamesRating,
     // GameRating
-  } = await db(config(false)).catch(utils.handleFatalError) */
+  } = await db(config(false)).catch(utils.handleFatalError)
 
   let game
   let el
-  /* console.log('Comienza book1')
+  console.log('Comienza book1')
   
   for (const element in book1) {
     el = book1[element]
@@ -171,8 +171,8 @@ async function run () {
     })
     console.log(game)
     console.log("-------------------------------------")
-  } */
-  /* console.log('Comienza book7')
+  }
+  console.log('Comienza book7')
   
   for (const element in book7) {
     el = book7[element]
@@ -390,7 +390,7 @@ async function run () {
     })
     console.log(game)
     console.log("-------------------------------------")
-  } */
+  }
 
   console.log('Comienza User1')
   for (const element in user1) {
