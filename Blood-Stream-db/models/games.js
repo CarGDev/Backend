@@ -13,11 +13,11 @@ module.exports = function setupGamesModel (config) {
     },
     Url_Game: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: true
     },
     Name: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: true
     },
     Subtitle: {
       type: Sequelize.TEXT,
@@ -47,7 +47,7 @@ module.exports = function setupGamesModel (config) {
       type: Sequelize.DATE,
       allowNull: true
     },
-    Current_Version_Release_DAte: {
+    Current_Version_Release_Date: {
       type: Sequelize.DATE,
       allowNull: true
     }

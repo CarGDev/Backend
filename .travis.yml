@@ -1,0 +1,32 @@
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+
+node_js:
+  - '12'
+
+git:
+  depth: 3
+
+script:
+  - yarn test
+
+notifications:
+  email:
+    reciepients:
+      - ingecarlos.gutierrez@gmail.com
+      - moquera012@gmail.com
+    on_success: always
+    on_failure: always
+
+deploy:
+  provide: heroku
+  skip-cleanup: true
+  keep-history: true
+  api_key: 382e5094-daa2-4e4c-949f-3944188b9664
+  app: backend
+  on:
+    repo: Blood-Stream/Backend
