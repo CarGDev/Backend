@@ -11,6 +11,7 @@ module.exports = function config (configExtra) {
       username: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASS || 'password',
       hostname: process.env.DB_HOST || 'localhost',
+      port: process.env.PORT || 3000,
 	    dialect: 'postgres',
       dialectOptions: {
         ssl: {
@@ -27,6 +28,7 @@ module.exports = function config (configExtra) {
       username: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASS || 'password',
       hostname: process.env.DB_HOST || 'localhost',
+      port: process.env.PORT || 3000,
 	    dialect: 'postgres',
       dialectOptions: {
         ssl: {

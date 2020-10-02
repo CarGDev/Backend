@@ -23,10 +23,11 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
 app.use(errors)
 
-app.listen(config.api.port, () => {
+app.listen(conf(false).port, () => {
   console.log(process.env.NODE_ENV)
   
   console.log(conf(false).database)
   console.log(conf(false).hostname)
-  console.log(`Api escuchando en el puerto ${config.api.port}`)
+  /* console.log(`Api escuchando en el puerto ${config.api.port}`) */
+  console.log(`Api escuchando en el puerto ${conf(false).port}`)
 })
