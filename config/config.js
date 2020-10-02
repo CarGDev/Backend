@@ -7,6 +7,7 @@ module.exports = function config (configExtra) {
 
   if (configExtra) {
     config = {
+      url: proccess.env.DATABASE_URL || '',
       database: process.env.DB_NAME || 'bloodstreamdb',
       username: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASS || 'password',
@@ -24,6 +25,7 @@ module.exports = function config (configExtra) {
     }
   } else {
     config = {
+      url: proccess.env.DATABASE_URL || '',
       database: process.env.DB_NAME || 'bloodstreamdb',
       username: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASS || 'password',
