@@ -44,7 +44,7 @@ async function run () {
     // LenguagesGames,
     // Genres,
     // GenresGames,
-    Games
+    // Games
     // UserRating,
     // GamesRating,
     // GameRating
