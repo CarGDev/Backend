@@ -9,10 +9,15 @@ module.exports = {
     secret: process.env.JWT_SECRET || 'Login'
   },
   mysql: {
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'postgres',
+    password: process.env.DB_PASS || 'password',
+    database: process.env.DB_NAME || 'bloodstreamdb',
+/* 
     host: process.env.MYSQL_HOST || 'localhost',
     user: process.env.MYSQL_USER || 'root',
     password: process.env.MYSQL_PASS || '',
-    database: process.env.MYSQL_DB || 'bloodstream'
+    database: process.env.MYSQL_DB || 'bloodstream' */
   },
   mysqlService: {
     port: process.env.MYSQL_SRV_PORT || 3306,
