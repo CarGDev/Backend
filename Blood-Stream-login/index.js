@@ -9,31 +9,21 @@ const user = require('./api/components/user/network')
 const errors = require('./network/errors')
 const app = express()
 const conf = require('../config/config')
-const path = require('path')
 
-const options = {
-  key: fs.readFileSync(path.resolve + '/host.key'),
-  cert: fs.readFileSync(path.resolve + '/host.crt')
-};
-
-// Setup server
-const server = require('https').createServer(options, app);
-
-server.use(cors())
-server.use(bodyParser.json())
+app.use(cors())
+app.use(bodyParser.json())
 
 const swaggerDoc = require('./api/swagger.json')
 const auth = require('./api/components/auth/network')
 
 // ROUTER
-server.use('/user', user)
-server.use('/user', auth)
-server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
+app.use('/user', user)
+app.use('/user', auth)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
-server.use(errors)
+app.use(errors)
 
-server.listen(conf(false).port, () => {
-  console.log(path.resolve)
+app.listen(conf(false).port, () => {
   console.log(process.env.NODE_ENV)
   
   console.log(conf(false).database)
