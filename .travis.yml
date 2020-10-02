@@ -20,7 +20,6 @@ deploy:
   provide: heroku
   skip-cleanup: true
   keep-history: true
-  github-token: "$GITHUB_TOKEN"
   api_key:
     secure: ZMU6IMCJ73GNDP9yVJmxENeNXJSvGbd8KwP3reALLJF4Bg/lBvWtvD1gcbEOEh5u0fXiXgSOtYdSfrMPYrIMw0UcdoiqrpVTOhqRojineQmjpfHu68SwwNU9/Wxfh71qySpkHH821tp6dj/A2u8tU+F8qCccaDAs4vkzA15E2QpFyVBbn/wjON4I7iMxfpxfM3praXhjwLeHzj8V7iSQT8hjmnFoLiYJdQG4DjA8KJ+DduM44lPctB328LMgtaj5OyyZq1RhoVcgcR2XTc2MZYeDo1AFWa7/T/hi0Pdu6pYN/UGgbHLZ1QiwJGyZ+Yltvf2OlSCUVzOqxcSH5D+W2A14EiwscROf38o4Vh/+pP5+mm9GFf+kC9bwHkr0+yt4sE6J9oZzMJVigqr623bj6Maf7GVJXBSEVlrb4YNFTbWH6ic+cCJ2RHNT/aUATUdHCKLforw61+UM1qY8dXnWyM0zxEldp3Zbs4uc2ZG6QIXJcQp402RyH2GK3BoGm9G6WT03/i9C5YM9QMBw9Es6hClzCfWdcn3qoCfsMPAPsHagwyW3Chr4Dv88ZVfyQQJNdbRl/eB1Tsfakm0PWinNz4w+aypBI+/Stgq2Ijc9BJkieQo6WWcRMfo3XZyniwCZwN2WNuBLmtLKQjLZoiVQQ5HTWRKZw3ry2JN7UH8oM3g=
   app: backend
