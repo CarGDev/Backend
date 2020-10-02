@@ -1,0 +1,34 @@
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+
+node_js:
+  - '12'
+
+git:
+  depth: 3
+
+script:
+  - yarn test
+
+notifications:
+  email:
+    reciepients:
+      - ingecarlos.gutierrez@gmail.com
+      - moquera012@gmail.com
+    on_success: always
+    on_failure: always
+
+deploy:
+  provide: heroku
+  skip-cleanup: true
+  keep-history: true
+  github-token: $GITHUB_TOKEN
+  api_key: 
+    secure: "BsWNSwzOH3S2EDbtHfq9arJWug+g1ni8k9U3CBzg2FQRZHs16qQFwLESTQy4kEEOkdRu3N5w9KWEhhnWuUuTo003jaDlAvWfd0p4k+Sk3cua+RLIhgazAnhHpK+/hb3LAGZ65uEYAy96+pp/EAgTQ4AHuF6euC6eoT91cenIMfU9vUp0NoDjzDNU0UuZ9CA55GU1ykg3tmZ44w6lRHvceO07PcPNZRr81OCypChVZn0oII29h7jAtLzoWYVTxWdYObu48jA1UU/ubJ+WP7yWQaCVkRIcjNM5H07GS/2NQGb5+MjTmO9jCnEUaXqYLLm3Rd/pl541w8t2bsahFQ30dAVqJF8Bypu6oUi0XDDxDyIgRf6vQzlFzUg958d9swirndoUQU2/PD+sf9GMd9Hy6g/3N/N2VboC5UqeMqppaInLnWmA4rHawXVqpAidmMOTVAekmEH+gGiLZ+blbNn3C9Vg9YLZY91KainJZFH+foqCE0B/N2haHneQix7sFcdlhn7JaGoFS9R96jaXzlWYbno1L9jeu7I+hRWBMVHVDKkLVZKm8Yce9pUAIIBmLtaaCvziZOR2KzOaqQ2RftetKJHe979mgjcf6KpkHVCVqqpCSKOBLCGev+mmFIYvejvjnCgODjhuIrTnZGyk9olaPkrF14pfYGITxsTs7+r8jrM="
+  app: backend
+  on:
+    repo: Blood-Stream/Backend
