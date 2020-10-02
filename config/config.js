@@ -10,10 +10,9 @@ module.exports = function config (configExtra) {
       // url: proccess.env.DATABASE_URL || '',
       database: process.env.DB_NAME || 'bloodstreamdb',
       username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASS || 'password',
-      hostname: process.env.DB_HOST || 'localhost',
-      port: process.env.PORT || 3000,
-	    dialect: 'postgres',
+      password: process.env.DB_PASS || 'master01',
+      host: process.env.DB_HOST || 'database-1.cpchb6koet7f.us-east-2.rds.amazonaws.com',
+      dialect: 'postgres',
       dialectOptions: {
         ssl: {
           require: true,
@@ -28,10 +27,9 @@ module.exports = function config (configExtra) {
       // url: proccess.env.DATABASE_URL || '',
       database: process.env.DB_NAME || 'bloodstreamdb',
       username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASS || 'password',
-      hostname: process.env.DB_HOST || 'localhost',
-      port: process.env.PORT || 3000,
-	    dialect: 'postgres',
+      password: process.env.DB_PASS || 'master01',
+      host: process.env.DB_HOST || 'database-1.cpchb6koet7f.us-east-2.rds.amazonaws.com',
+      dialect: 'postgres',
       dialectOptions: {
         ssl: {
           require: true,
