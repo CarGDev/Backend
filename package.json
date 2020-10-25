@@ -51,7 +51,7 @@
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0",
-    "pg": "^8.3.3",
+    "pg": "^8.4.0",
     "pg-hstore": "^2.3.3",
     "redis": "^3.0.2",
     "request": "^2.88.2",
