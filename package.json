@@ -55,7 +55,7 @@
     "pg-hstore": "^2.3.3",
     "redis": "^3.0.2",
     "request": "^2.88.2",
-    "sequelize": "^6.3.5",
+    "sequelize": "^6.4.0",
     "sign-up": "file:./Blood-Stream-signUp",
     "swagger-ui-express": "^4.1.4"
   }
