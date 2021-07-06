@@ -38,6 +38,6 @@
     "inquirer": "^7.3.3",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.6.5"
   }
 }
